@@ -183,68 +183,71 @@ footer{margin-top:44px;text-align:center;font-size:11px;color:#6b6588;line-heigh
 <div class="wrap">
   <header>
     <div class="crest">賢</div>
-    <h1>賢人会議</h1>
-    <p class="tagline">悩みを、七日の行動に変える</p>
+    <h1 data-ja="賢人会議" data-en="Council of Sages">賢人会議</h1>
+    <p class="tagline" data-ja="悩みを、七日の行動に変える" data-en="Turn your worry into seven days of action">悩みを、七日の行動に変える</p>
     <div class="rule"></div>
     <div id="member-bar" style="font-size:12.5px;color:#9a94b8;margin-top:2px;min-height:1.2em"></div>
-    <div style="margin-top:8px"><a href="https://eichinohi.com/" style="font-size:12px;color:#9a94b8;text-decoration:none;border:1px solid #3d3860;border-radius:999px;padding:4px 14px">🏮 叡智の灯火（本編）へ</a></div>
+    <div style="margin-top:8px"><a href="https://eichinohi.com/" style="font-size:12px;color:#9a94b8;text-decoration:none;border:1px solid #3d3860;border-radius:999px;padding:4px 14px" data-ja="🏮 叡智の灯火（本編）へ" data-en="🏮 Beacon of Wisdom (main)">🏮 叡智の灯火（本編）へ</a></div>
+    <div style="margin-top:8px">
+      <button id="lang-ja" onclick="setLang('ja')" style="font-size:11px;background:transparent;border:1px solid #3d3860;color:#9a94b8;border-radius:999px 0 0 999px;padding:3px 12px;cursor:pointer;font-family:inherit">日本語</button><button id="lang-en" onclick="setLang('en')" style="font-size:11px;background:transparent;border:1px solid #3d3860;border-left:none;color:#9a94b8;border-radius:0 999px 999px 0;padding:3px 12px;cursor:pointer;font-family:inherit">English</button>
+    </div>
   </header>
 
   <!-- PHASE 1 -->
   <section id="phase-input">
     <div class="candle"><div class="flame"></div></div>
     <div class="panel">
-      <label class="q" for="worry">いま、灯したい悩みは何ですか。</label>
-      <textarea id="worry" placeholder="例:定年後の収入源をどう育てるか迷っている。安定を取るか、挑戦を取るか。"></textarea>
+      <label class="q" for="worry" data-ja="いま、灯したい悩みは何ですか。" data-en="What worry would you like to light up?">いま、灯したい悩みは何ですか。</label>
+      <textarea id="worry" data-ph data-ja="例:定年後の収入源をどう育てるか迷っている。安定を取るか、挑戦を取るか。" data-en="e.g. I'm torn about how to build income after retirement — play it safe, or take a risk?" placeholder="例:定年後の収入源をどう育てるか迷っている。安定を取るか、挑戦を取るか。"></textarea>
       <div class="chips" role="group" aria-label="悩みの種類">
-        <button class="chip" data-t="仕事とキャリアの方向性に迷っている">仕事</button>
-        <button class="chip" data-t="大切な人との関係がぎくしゃくしている">人間関係</button>
-        <button class="chip" data-t="お金の不安が頭から離れない">お金</button>
-        <button class="chip" data-t="続けるべきか、やめるべきか決められないことがある">決断</button>
-        <button class="chip" data-t="創作を続ける意味を見失いかけている">創作</button>
-        <button class="chip" data-t="残りの人生で何を成すべきか考えている">人生</button>
+        <button class="chip" data-t="仕事とキャリアの方向性に迷っている" data-t-en="I'm unsure about my work and career direction" data-ja="仕事" data-en="Work">仕事</button>
+        <button class="chip" data-t="大切な人との関係がぎくしゃくしている" data-t-en="Things are strained with someone I care about" data-ja="人間関係" data-en="Relationships">人間関係</button>
+        <button class="chip" data-t="お金の不安が頭から離れない" data-t-en="Money worries won't leave my mind" data-ja="お金" data-en="Money">お金</button>
+        <button class="chip" data-t="続けるべきか、やめるべきか決められないことがある" data-t-en="I can't decide whether to keep going or stop" data-ja="決断" data-en="Decisions">決断</button>
+        <button class="chip" data-t="創作を続ける意味を見失いかけている" data-t-en="I'm losing sight of why I keep creating" data-ja="創作" data-en="Creativity">創作</button>
+        <button class="chip" data-t="残りの人生で何を成すべきか考えている" data-t-en="I'm wondering what to do with the rest of my life" data-ja="人生" data-en="Life">人生</button>
       </div>
-      <button class="cta" id="convene">賢人を召集する</button>
+      <button class="cta" id="convene" data-ja="賢人を召集する" data-en="Convene the Sages">賢人を召集する</button>
     </div>
     <div class="panel" id="unlock-box" style="display:none;margin-top:14px;border-color:var(--tomoshibi)">
-      <label class="q">🔑 会員で解錠 — 賢者と、語り放題</label>
-      <p style="font-size:12.5px;color:#9a94b8;margin:-6px 0 12px;line-height:1.7">叡智の灯火の会員（note／Gumroad）なら、賢人会議も使い放題になります。</p>
+      <label class="q" data-ja="🔑 会員で解錠 — 賢者と、語り放題" data-en="🔑 Unlock with membership — unlimited talks">🔑 会員で解錠 — 賢者と、語り放題</label>
+      <p style="font-size:12.5px;color:#9a94b8;margin:-6px 0 12px;line-height:1.7" data-ja="叡智の灯火の会員（note／Gumroad）なら、賢人会議も使い放題になります。" data-en="Members of Beacon of Wisdom (note / Gumroad) get unlimited access to the Council of Sages, too.">叡智の灯火の会員（note／Gumroad）なら、賢人会議も使い放題になります。</p>
       <div class="vrow">
-        <input type="text" id="u-code" placeholder="noteの今月コード（TOMO-XXXX）" autocomplete="off">
-        <button class="cta" id="u-code-go">解錠</button>
+        <input type="text" id="u-code" data-ph data-ja="noteの今月コード（TOMO-XXXX）" data-en="note monthly code (TOMO-XXXX)" placeholder="noteの今月コード（TOMO-XXXX）" autocomplete="off">
+        <button class="cta" id="u-code-go" data-ja="解錠" data-en="Unlock">解錠</button>
       </div>
-      <p style="text-align:center;font-size:11.5px;color:#7a7264;margin:12px 0">— または —</p>
+      <p style="text-align:center;font-size:11.5px;color:#7a7264;margin:12px 0" data-ja="— または —" data-en="— or —">— または —</p>
       <div class="vrow">
-        <input type="text" id="u-lic" placeholder="Gumroadのライセンスキー" autocomplete="off">
-        <button class="cta" id="u-lic-go">解錠</button>
+        <input type="text" id="u-lic" data-ph data-ja="Gumroadのライセンスキー" data-en="Gumroad license key" placeholder="Gumroadのライセンスキー" autocomplete="off">
+        <button class="cta" id="u-lic-go" data-ja="解錠" data-en="Unlock">解錠</button>
       </div>
       <p class="vmsg" id="u-msg"></p>
-      <button class="ghost" id="u-close" style="margin-top:12px">閉じる</button>
+      <button class="ghost" id="u-close" style="margin-top:12px" data-ja="閉じる" data-en="Close">閉じる</button>
     </div>
     <div class="saved" id="visit-sec">
-      <h4>賢者を訪ねる</h4>
+      <h4 data-ja="賢者を訪ねる" data-en="Visit a sage">賢者を訪ねる</h4>
       <div class="panel">
-        <label class="q" for="visit-name">会いたい偉人の名を、そのまま。</label>
+        <label class="q" for="visit-name" data-ja="会いたい偉人の名を、そのまま。" data-en="Just type the name of anyone you'd like to meet.">会いたい偉人の名を、そのまま。</label>
         <div class="vrow">
-          <input type="text" id="visit-name" placeholder="例: クレオパトラ" autocomplete="off">
-          <button class="cta" id="visit-go">会いに行く</button>
+          <input type="text" id="visit-name" data-ph data-ja="例: クレオパトラ" data-en="e.g. Cleopatra" placeholder="例: クレオパトラ" autocomplete="off">
+          <button class="cta" id="visit-go" data-ja="会いに行く" data-en="Go meet them">会いに行く</button>
         </div>
         <div class="chips" style="margin:16px 0 0" role="tablist" aria-label="賢者の間口">
-          <button class="chip vtab on" data-c="jo">女傑</button>
-          <button class="chip vtab" data-c="ei">英傑</button>
-          <button class="chip vtab" data-c="bun">文人・賢者</button>
+          <button class="chip vtab on" data-c="jo" data-ja="女傑" data-en="Heroines">女傑</button>
+          <button class="chip vtab" data-c="ei" data-ja="英傑" data-en="Heroes">英傑</button>
+          <button class="chip vtab" data-c="bun" data-ja="文人・賢者" data-en="Thinkers">文人・賢者</button>
         </div>
         <div class="chips" id="vchips" style="margin:10px 0 0"></div>
-        <button class="ghost" id="ichigo" style="margin-top:16px">一期一会 — 思いがけない誰かに会う</button>
+        <button class="ghost" id="ichigo" style="margin-top:16px" data-ja="一期一会 — 思いがけない誰かに会う" data-en="A chance encounter — meet someone unexpected">一期一会 — 思いがけない誰かに会う</button>
         <p class="vmsg" id="visit-msg"></p>
       </div>
     </div>
     <div class="saved" id="en-sec" style="display:none">
-      <h4>結んだ縁 — 賢者と語らう</h4>
+      <h4 data-ja="結んだ縁 — 賢者と語らう" data-en="Bonds you've formed — talk again">結んだ縁 — 賢者と語らう</h4>
       <div id="en-list"></div>
     </div>
     <div class="saved" id="saved" style="display:none">
-      <h4>進行中の修行</h4>
+      <h4 data-ja="進行中の修行" data-en="Practices in progress">進行中の修行</h4>
       <div id="saved-list"></div>
     </div>
   </section>
@@ -258,7 +261,7 @@ footer{margin-top:44px;text-align:center;font-size:11px;color:#6b6588;line-heigh
       <div class="dots">
         <div class="flame" style="--d:0s"></div><div class="flame" style="--d:.4s"></div><div class="flame" style="--d:.8s"></div>
       </div>
-      <p id="loading-text">賢者たちが集まっています……</p>
+      <p id="loading-text" data-ja="賢者たちが集まっています……" data-en="The sages are gathering…">賢者たちが集まっています……</p>
     </div>
   </section>
 
@@ -266,7 +269,7 @@ footer{margin-top:44px;text-align:center;font-size:11px;color:#6b6588;line-heigh
   <section id="phase-council" class="hidden">
     <div class="council-head">
       <p class="worry" id="worry-echo"></p>
-      <h2>三賢、参上</h2>
+      <h2 data-ja="三賢、参上" data-en="Three sages, arrived">三賢、参上</h2>
     </div>
     <div id="sages"></div>
   </section>
@@ -283,12 +286,12 @@ footer{margin-top:44px;text-align:center;font-size:11px;color:#6b6588;line-heigh
   <div id="err-box"></div>
 
   <div class="profile" id="profile" style="display:none">
-    <h4>あなたの叡智型</h4>
+    <h4 data-ja="あなたの叡智型" data-en="Your wisdom type">あなたの叡智型</h4>
     <div class="tally" id="tally"></div>
     <p class="type-line" id="type-line"></p>
   </div>
 
-  <footer>
+  <footer data-html data-ja="賢者の言葉・処方箋・実行プランはAIによる創作です。実在した人物の実際の発言ではありません。<br>原案リスペクト:叡智の灯火 (eichinohi.com)" data-en="The sages' words, prescriptions and plans are AI-generated creative writing — not the actual words of real people.<br>With respect to the original: Beacon of Wisdom (eichinohi.com)">
     賢者の言葉・処方箋・実行プランはAIによる創作です。実在した人物の実際の発言ではありません。<br>
     原案リスペクト:叡智の灯火 (eichinohi.com)
   </footer>
@@ -301,9 +304,27 @@ footer{margin-top:44px;text-align:center;font-size:11px;color:#6b6588;line-heigh
    ================================================================ */
 const API_ENDPOINT='https://api.eichinohi.com/api/sage';
 const MEMBER_API='https://api.eichinohi.com';
-const SAGE_FREE_LIMIT=12;
+const SAGE_FREE_LIMIT=20;
 let MEMBER_TOKEN='';
 try{ MEMBER_TOKEN=localStorage.getItem('kenjin:token')||''; }catch(e){}
+let LANG='ja';try{LANG=localStorage.getItem('kenjin:lang')||'ja';}catch(e){}
+try{document.documentElement.lang=LANG;}catch(e){}
+function T(ja,en){return LANG==='en'?en:ja;}
+function schoolLabel(c){return {'剛':'Resolve','柔':'Flow','知':'Reason','情':'Heart'}[c]||'Reason';}
+function wayOf(c){return LANG==='en'?('The Way of '+schoolLabel(c)):(c+'の道');}
+function schoolDesc(c){var m={'剛':T('剛 — 決断と行動の人','Resolve — decisive and active'),'柔':T('柔 — 受容と流れの人','Flow — accepting and adaptive'),'知':T('知 — 理性と分析の人','Reason — rational and analytical'),'情':T('情 — 心と縁の人','Heart — feeling and connection')};return m[c]||'';}
+function setLang(l){try{localStorage.setItem('kenjin:lang',l);}catch(e){}location.reload();}
+function localizeStatic(){
+  document.querySelectorAll('[data-ja]').forEach(function(el){
+    var v=LANG==='en'?(el.getAttribute('data-en')||''):(el.getAttribute('data-ja')||'');
+    if(el.hasAttribute('data-ph')){el.setAttribute('placeholder',v);}
+    else if(el.hasAttribute('data-html')){el.innerHTML=v;}
+    else{el.textContent=v;}
+  });
+  var lb=document.getElementById('lang-ja'),le=document.getElementById('lang-en');
+  if(lb){lb.style.background=(LANG==='ja')?'var(--tomoshibi)':'transparent';lb.style.color=(LANG==='ja')?'#241a08':'#9a94b8';}
+  if(le){le.style.background=(LANG==='en')?'var(--tomoshibi)':'transparent';le.style.color=(LANG==='en')?'#241a08':'#9a94b8';}
+}
 
 const $=id=>document.getElementById(id);
 const phases=['phase-input','phase-loading','phase-council','phase-intake','phase-rx','phase-plan','phase-talk'];
@@ -333,15 +354,16 @@ const store={
   }
 };
 
-document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{$('worry').value=c.dataset.t;$('worry').focus();}));
+document.querySelectorAll('#phase-input>.panel .chip').forEach(c=>c.addEventListener('click',()=>{$('worry').value=(LANG==='en'&&c.dataset.tEn)?c.dataset.tEn:c.dataset.t;$('worry').focus();}));
 
 function apiHeaders(){const h={"Content-Type":"application/json"};if(MEMBER_TOKEN)h["Authorization"]="Bearer "+MEMBER_TOKEN;return h;}
 async function apiCall(prompt){
+  if(LANG==='en'){prompt+='\n\n[OUTPUT LANGUAGE] Regardless of any instruction above, write every user-facing text value in natural, fluent English (name, era, philosophy, advice, maxim, questions, prescription title/steps/encouragement, plan goal/actions/week tasks, dialogue lines, error reasons, etc.). Keep all JSON keys exactly as written. The one-character "school" value must remain one of the Japanese kanji 剛/柔/知/情; "sealChar" must remain a single kanji.';}
   const res=await fetch(API_ENDPOINT,{
     method:"POST",headers:apiHeaders(),
     body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:prompt}]})
   });
-  if(res.status===402){const e=new Error('無料のお試しはここまでです');e.quota=true;throw e;}
+  if(res.status===402){const e=new Error(T('無料のお試しはここまでです','Your free trial is over'));e.quota=true;throw e;}
   const data=await res.json();
   if(data.error)throw new Error(data.error.message||'API error');
   if(!MEMBER_TOKEN)bumpFree();
@@ -361,8 +383,8 @@ function showError(err){
     if(MEMBER_TOKEN){MEMBER_TOKEN='';try{localStorage.removeItem('kenjin:token');}catch(e){}updateBadge();}
     show('phase-input');openUnlock();return;
   }
-  const msg=(typeof err==='string')?err:((err&&err.message)||'エラー');
-  $('err-box').innerHTML='<div class="err">中断されました('+esc(msg)+')。もう一度お試しください。</div>';
+  const msg=(typeof err==='string')?err:((err&&err.message)||T('エラー','Error'));
+  $('err-box').innerHTML='<div class="err">'+T('中断されました（','Interrupted (')+esc(msg)+T('）。もう一度お試しください。','). Please try again.')+'</div>';
   $('phase-loading').classList.add('hidden');$('phase-input').classList.remove('hidden');
 }
 
@@ -371,7 +393,7 @@ $('convene').addEventListener('click',async()=>{
   const worry=$('worry').value.trim();
   if(!worry){$('worry').focus();return;}
   state.worry=worry;
-  show('phase-loading');$('loading-text').textContent='賢者たちが集まっています……';
+  show('phase-loading');$('loading-text').textContent=T('賢者たちが集まっています……','The sages are gathering…');
   const prompt=`あなたは歴史上の偉人の思想と文体を深く理解した脚本家です。次の悩みに対し、思想が互いに対立する実在した偉人(故人)3名を選び、各人の声で助言を創作してください。東西・時代を意図的に混ぜること。
 悩み:「${worry}」
 必ず次のJSONのみを出力(前置き・コードブロック禁止):
@@ -390,12 +412,12 @@ function renderCouncil(){
   $('sages').innerHTML=state.sages.map((s,i)=>`
     <article class="sage">
       <div class="seal" aria-hidden="true">${esc(s.sealChar||'賢')}</div>
-      <span class="school">${esc(s.school||'知')}の道</span>
+      <span class="school">${wayOf(s.school||'知')}</span>
       <h3>${esc(s.name)}</h3>
       <p class="era">${esc(s.era||'')} ／ ${esc(s.philosophy||'')}</p>
       <p class="advice">${esc(s.advice||'')}</p>
       <p class="maxim">「${esc(s.maxim||'')}」</p>
-      <button class="pick" data-i="${i}">この賢者に従う</button>
+      <button class="pick" data-i="${i}">${T('この賢者に従う','Follow this sage')}</button>
     </article>`).join('');
   document.querySelectorAll('.pick').forEach(b=>b.addEventListener('click',()=>choose(+b.dataset.i)));
   show('phase-council');
@@ -404,7 +426,7 @@ function renderCouncil(){
 /* ---------- council → intake (問診) ---------- */
 async function choose(i){
   const s=state.sages[i];state.sage=s;state.intake=[];
-  show('phase-loading');$('loading-text').textContent=s.name+' が問いを立てています……';
+  show('phase-loading');$('loading-text').textContent=s.name+T(' が問いを立てています……',' is forming their questions…');
   const prompt=`あなたは賢者 ${s.name}(${s.era}、思想: ${s.philosophy})。相談者の悩み:「${state.worry}」
 処方箋を書く前の問診として、本人の実情を深く知る質問を3つ、${s.name}らしい言葉で作成してください。必ず次のJSONのみを出力(前置き・コードブロック禁止):
 {"intro":"問診に入る前の一言(50字以内、その人の声で)","questions":["質問文(45字以内)","2つ目","3つ目"]}
@@ -421,26 +443,26 @@ function renderIntake(s,q){
     <div class="talk-head">
       <div class="sseal" aria-hidden="true">${esc(s.sealChar||'賢')}</div>
       <div>
-        <h3>${esc(s.name)}の問診</h3>
-        <p class="sub">${esc(s.philosophy||'')} — 良い処方は、良い問診から</p>
+        <h3>${esc(s.name)}${T('の問診',"'s intake")}</h3>
+        <p class="sub">${esc(s.philosophy||'')}${T(' — 良い処方は、良い問診から',' — a good prescription starts with good questions')}</p>
       </div>
     </div>
     <div class="rx">
       <p class="intro">${esc(q.intro||'')}</p>
       ${q.questions.slice(0,3).map((qq,i)=>`
         <div class="iq">
-          <label for="iq-${i}"><b>${['一','二','三'][i]}</b>${esc(qq)}</label>
-          <textarea id="iq-${i}" placeholder="思いつくまま、率直に。"></textarea>
+          <label for="iq-${i}"><b>${(LANG==='en'?['1','2','3']:['一','二','三'])[i]}</b>${esc(qq)}</label>
+          <textarea id="iq-${i}" placeholder="${T('思いつくまま、率直に。','Whatever comes to mind — be candid.')}"></textarea>
         </div>`).join('')}
-      <p class="iq hint" style="margin-bottom:14px">全部でなくて構いません。答えられるものだけで大丈夫です。</p>
-      <button class="cta" id="intake-send">これを踏まえて処方を頼む</button>
+      <p class="iq hint" style="margin-bottom:14px">${T('全部でなくて構いません。答えられるものだけで大丈夫です。',"You don't have to answer them all — just the ones you can.")}</p>
+      <button class="cta" id="intake-send">${T('これを踏まえて処方を頼む','Ask for a prescription')}</button>
     </div>
     <div class="after">
-      <button class="ghost" id="intake-back">会議に戻る</button>
+      <button class="ghost" id="intake-back">${T('会議に戻る','Back to the council')}</button>
     </div>`;
   $('intake-send').addEventListener('click',()=>{
     const qa=q.questions.slice(0,3).map((qq,i)=>({q:qq,a:$('iq-'+i).value.trim()})).filter(x=>x.a);
-    if(!qa.length){$('iq-0').focus();$('iq-0').placeholder='一つで良いので、教えてください。';return;}
+    if(!qa.length){$('iq-0').focus();$('iq-0').placeholder=T('一つで良いので、教えてください。','Just one is fine — please tell me.');return;}
     state.intake=qa;
     writeRx();
   });
@@ -449,13 +471,13 @@ function renderIntake(s,q){
 }
 
 function intakeText(){
-  return (state.intake||[]).map(x=>'問「'+x.q+'」→ 答「'+x.a+'」').join('\n');
+  return (state.intake||[]).map(x=>T('問「','Q: ')+x.q+T('」→ 答「',' → A: ')+x.a+T('」','')).join('\n');
 }
 
 /* ---------- intake → prescription ---------- */
 async function writeRx(){
   const s=state.sage;
-  show('phase-loading');$('loading-text').textContent=s.name+' が筆を執っています……';
+  show('phase-loading');$('loading-text').textContent=s.name+T(' が筆を執っています……',' is taking up the brush…');
   const prompt=`悩み:「${state.worry}」
 賢者: ${s.name}(${s.philosophy})。その基本姿勢:「${s.advice}」
 問診での本人の答え:
@@ -475,12 +497,12 @@ ${intakeText()}
 function renderRx(s,rx,rev){
   $('phase-rx').innerHTML=`
     <div class="rx">
-      <p class="eyebrow">${rev?'改 訂 処 方 箋':'叡 智 の 処 方 箋'}</p>
-      <h2>${esc(rx.title||'処方箋')}</h2>
-      <p class="from">${esc(s.name)} より — ${esc(s.philosophy||'')}</p>
+      <p class="eyebrow">${rev?T('改 訂 処 方 箋','REVISED PRESCRIPTION'):T('叡 智 の 処 方 箋','PRESCRIPTION OF WISDOM')}</p>
+      <h2>${esc(rx.title||T('処方箋','Prescription'))}</h2>
+      <p class="from">${esc(s.name)}${T(' より — ',' — ')}${esc(s.philosophy||'')}</p>
       ${rev?`<div class="rebuttal">
         <p class="rvoice">${esc(rev.reply)}</p>
-        <p class="rinsight">異議から見えた望み — <b>${esc(rev.insight)}</b></p>
+        <p class="rinsight">${T('異議から見えた望み — ','What your objection revealed — ')}<b>${esc(rev.insight)}</b></p>
       </div>`:''}
       <p class="aphorism">${esc(rx.aphorism||s.maxim||'')}</p>
       <ol>${(rx.steps||[]).slice(0,3).map(t=>`<li>${esc(t)}</li>`).join('')}</ol>
@@ -488,24 +510,24 @@ function renderRx(s,rx,rev){
       <div class="bigseal" aria-hidden="true">${esc(s.sealChar||'賢')}</div>
     </div>
     <div class="after">
-      <button class="cta" id="to-plan">腹落ちした — 七日の修行に落とす</button>
-      <button class="ghost" id="objection-btn">異議あり — 賢者に問い返す</button>
-      <button class="ghost" id="talk-now">この賢者と語らう</button>
-      <button class="ghost" id="other-sage">別の賢者の声を聞く</button>
-      <button class="ghost" id="copy-btn">結果をコピーして共有する</button>
-      <button class="ghost" id="again">新しい悩みを灯す</button>
+      <button class="cta" id="to-plan">${T('腹落ちした — 七日の修行に落とす','Got it — turn into a 7-day practice')}</button>
+      <button class="ghost" id="objection-btn">${T('異議あり — 賢者に問い返す','I disagree — push back')}</button>
+      <button class="ghost" id="talk-now">${T('この賢者と語らう','Talk with this sage')}</button>
+      <button class="ghost" id="other-sage">${T('別の賢者の声を聞く','Hear another sage')}</button>
+      <button class="ghost" id="copy-btn">${T('結果をコピーして共有する','Copy & share')}</button>
+      <button class="ghost" id="again">${T('新しい悩みを灯す','Light a new worry')}</button>
     </div>
     <div class="panel obj-panel hidden" id="obj-panel">
-      <label class="q" for="obj-text">どこが腹に落ちませんか。遠慮なくどうぞ。</label>
+      <label class="q" for="obj-text">${T('どこが腹に落ちませんか。遠慮なくどうぞ。',"What doesn't sit right? Be blunt.")}</label>
       <div class="chips" role="group" aria-label="異議の種類">
-        <button class="chip oc" data-t="正直、難しすぎて動ける気がしない">難しすぎる</button>
-        <button class="chip oc" data-t="悩みの本質はそこではない気がする">的外れな気がする</button>
-        <button class="chip oc" data-t="正しいとは思うが、自分のやり方に合わない">自分らしくない</button>
-        <button class="chip oc" data-t="時間にも気持ちにも余裕がなく、現実的でない">余裕がない</button>
-        <button class="chip oc" data-t="頭では分かるが、怖くて一歩が踏み出せない">怖い</button>
+        <button class="chip oc" data-t="${T('正直、難しすぎて動ける気がしない','Honestly, it feels too hard to act on')}">${T('難しすぎる','Too hard')}</button>
+        <button class="chip oc" data-t="${T('悩みの本質はそこではない気がする',"This isn't really the heart of my worry")}">${T('的外れな気がする','Feels off-target')}</button>
+        <button class="chip oc" data-t="${T('正しいとは思うが、自分のやり方に合わない',"It may be right, but it's not my way")}">${T('自分らしくない','Not like me')}</button>
+        <button class="chip oc" data-t="${T('時間にも気持ちにも余裕がなく、現実的でない',"I have no time or energy — it's not realistic")}">${T('余裕がない','No room')}</button>
+        <button class="chip oc" data-t="${T('頭では分かるが、怖くて一歩が踏み出せない',"I understand it, but I'm too scared to take a step")}">${T('怖い','Scared')}</button>
       </div>
-      <textarea id="obj-text" placeholder="納得できない理由を、自分の言葉で。"></textarea>
-      <button class="cta" id="obj-send" style="margin-top:14px">賢者に問い返す</button>
+      <textarea id="obj-text" placeholder="${T('納得できない理由を、自分の言葉で。',"Why it doesn't convince you, in your own words.")}"></textarea>
+      <button class="cta" id="obj-send" style="margin-top:14px">${T('賢者に問い返す','Push back')}</button>
     </div>`;
   $('to-plan').addEventListener('click',makePlan);
   $('objection-btn').addEventListener('click',()=>{$('obj-panel').classList.toggle('hidden');if(!$('obj-panel').classList.contains('hidden'))$('obj-text').focus();});
@@ -514,8 +536,8 @@ function renderRx(s,rx,rev){
   $('other-sage').addEventListener('click',()=>renderCouncil());
   $('talk-now').addEventListener('click',async()=>{await saveEn(s);openTalk('en:'+s.name);});
   $('copy-btn').addEventListener('click',()=>{
-    const txt=`【賢人会議】\n悩み:${state.worry}\n選んだ賢者:${s.name}(${s.school}の道)\n処方:「${rx.aphorism||''}」\n#賢人会議`;
-    navigator.clipboard.writeText(txt).then(()=>{$('copy-btn').textContent='コピーしました ✓';setTimeout(()=>$('copy-btn').textContent='結果をコピーして共有する',1800);}).catch(()=>{});
+    const txt=T('【賢人会議】\n悩み:','[Council of Sages]\nWorry: ')+state.worry+T('\n選んだ賢者:','\nSage: ')+s.name+' ('+wayOf(s.school)+')'+T('\n処方:「','\nPrescription: ')+(rx.aphorism||'')+T('」\n#賢人会議','\n#CouncilOfSages');
+    navigator.clipboard.writeText(txt).then(()=>{$('copy-btn').textContent=T('コピーしました ✓','Copied ✓');setTimeout(()=>$('copy-btn').textContent=T('結果をコピーして共有する','Copy & share'),1800);}).catch(()=>{});
   });
   $('again').addEventListener('click',()=>{$('worry').value='';show('phase-input');refreshSaved();refreshEn();});
   renderProfile();
@@ -527,7 +549,7 @@ async function objectFlow(){
   const obj=$('obj-text').value.trim();
   if(!obj){$('obj-text').focus();return;}
   const s=state.sage,rx=state.rx;
-  show('phase-loading');$('loading-text').textContent=s.name+' が問いに向き合っています……';
+  show('phase-loading');$('loading-text').textContent=s.name+T(' が問いに向き合っています……',' is facing your objection…');
   const prompt=`悩み:「${state.worry}」
 問診での本人の答え:
 ${intakeText()}
@@ -545,7 +567,7 @@ ${intakeText()}
 /* ---------- prescription → executable plan ---------- */
 async function makePlan(){
   const s=state.sage,rx=state.rx;
-  show('phase-loading');$('loading-text').textContent='行動計画を練り上げています……';
+  show('phase-loading');$('loading-text').textContent=T('行動計画を練り上げています……','Crafting your action plan…');
   const prompt=`あなたは行動科学(実行意図・スモールステップ)に詳しいコーチです。以下を、実行可能な計画に落としてください。
 悩み:「${state.worry}」/ 方針: ${s.name}の助言「${rx.aphorism||s.maxim}」/ 行動案: ${(rx.steps||[]).join('、')}
 問診での本人の答え(制約と望みを厳守すること):
@@ -605,56 +627,56 @@ function renderPlan(rec){
   const done=rec.checks.filter(Boolean).length;
   $('phase-plan').innerHTML=`
     <div class="plancard">
-      <p class="eyebrow">実 行 の 間</p>
-      <h2>七日の修行</h2>
-      <p class="from" style="text-align:center;font-size:12.5px;color:#7a7264">${esc(rec.sage.name)}の道 — 「${esc(rec.aphorism)}」</p>
-      <div class="goalbox">七日後の姿:<b>${esc(rec.goal)}</b></div>
+      <p class="eyebrow">${T('実 行 の 間','THE HALL OF ACTION')}</p>
+      <h2>${T('七日の修行','Seven-Day Practice')}</h2>
+      <p class="from" style="text-align:center;font-size:12.5px;color:#7a7264">${esc(rec.sage.name)}${T('の道 — 「',' — “')}${esc(rec.aphorism)}${T('」','”')}</p>
+      <div class="goalbox">${T('七日後の姿:','In seven days: ')}<b>${esc(rec.goal)}</b></div>
       ${rec.actions.map(a=>`
         <div class="act">
           <h4>${esc(a.step)}</h4>
           <dl>
-            <dt>合図</dt><dd>${esc(a.when)}</dd>
-            <dt>最初の5分</dt><dd>${esc(a.first5)}</dd>
-            <dt>つまずき</dt><dd>${esc(a.obstacle)}</dd>
-            <dt>対策</dt><dd>${esc(a.ifthen)}</dd>
+            <dt>${T('合図','Cue')}</dt><dd>${esc(a.when)}</dd>
+            <dt>${T('最初の5分','First 5 min')}</dt><dd>${esc(a.first5)}</dd>
+            <dt>${T('つまずき','Snag')}</dt><dd>${esc(a.obstacle)}</dd>
+            <dt>${T('対策','Plan B')}</dt><dd>${esc(a.ifthen)}</dd>
           </dl>
         </div>`).join('')}
-      <p class="weekhead">七日の歩み</p>
+      <p class="weekhead">${T('七日の歩み','The seven-day walk')}</p>
       <div class="progress"><i id="pbar" style="width:${done/7*100}%"></i></div>
       <div id="days">
         ${rec.week.map((w,i)=>`
           <label class="day ${rec.checks[i]?'done':''}">
             <input type="checkbox" data-i="${i}" ${rec.checks[i]?'checked':''}>
-            <span class="dnum">${i+1}日</span>
+            <span class="dnum">${T((i+1)+'日','Day '+(i+1))}</span>
             <span class="dtask">${esc(w.task)}</span>
           </label>`).join('')}
       </div>
       <div class="kaiden ${done===7?'show':''}" id="kaiden">
-        <div class="kseal">皆伝</div>
-        <p>七日の修行、見事に成し遂げた。<br>この歩みは、もうあなたのものだ。</p>
+        <div class="kseal">${T('皆伝','Mastery')}</div>
+        <p>${T('七日の修行、見事に成し遂げた。<br>この歩みは、もうあなたのものだ。','You completed the seven-day practice.<br>This path is yours now.')}</p>
       </div>
       <div class="bridge">
-        <h5>現 実 へ の 橋</h5>
+        <h5>${T('現 実 へ の 橋','BRIDGE TO REALITY')}</h5>
         <div class="timeline-row">
-          <span>毎日の時刻</span><input type="time" id="ptime" value="08:00">
+          <span>${T('毎日の時刻','Daily time')}</span><input type="time" id="ptime" value="08:00">
         </div>
-        <button class="bbtn" id="ics-btn">カレンダーに7日分を登録(.ics)</button>
-        <a class="bbtn alt" id="gcal-btn" target="_blank" rel="noopener">Googleカレンダーに登録(毎日×7回)</a>
-        <button class="bbtn alt" id="plan-copy">プラン全文をコピー</button>
+        <button class="bbtn" id="ics-btn">${T('カレンダーに7日分を登録(.ics)','Add 7 days to calendar (.ics)')}</button>
+        <a class="bbtn alt" id="gcal-btn" target="_blank" rel="noopener">${T('Googleカレンダーに登録(毎日×7回)','Add to Google Calendar (daily ×7)')}</a>
+        <button class="bbtn alt" id="plan-copy">${T('プラン全文をコピー','Copy full plan')}</button>
       </div>
     </div>
     <div class="after">
-      <button class="ghost" id="plan-home">灯火の間に戻る</button>
+      <button class="ghost" id="plan-home">${T('灯火の間に戻る','Back to the hall')}</button>
     </div>`;
   const timeEl=$('ptime');
   $('ics-btn').addEventListener('click',()=>downloadICS(rec,timeEl.value||'08:00'));
   const setG=()=>{$('gcal-btn').href=gcalURL(rec,timeEl.value||'08:00');};
   setG();timeEl.addEventListener('change',setG);
   $('plan-copy').addEventListener('click',()=>{
-    const txt='【賢人会議・七日の修行】\n目標: '+rec.goal+'\n指針: 「'+rec.aphorism+'」— '+rec.sage.name+'\n\n'
-      +rec.actions.map(a=>'■'+a.step+'\n 合図:'+a.when+'\n 最初の5分:'+a.first5+'\n もし'+a.obstacle+'なら → '+a.ifthen).join('\n')
-      +'\n\n'+rec.week.map((w,i)=>(i+1)+'日目: '+w.task).join('\n');
-    navigator.clipboard.writeText(txt).then(()=>{$('plan-copy').textContent='コピーしました ✓';setTimeout(()=>$('plan-copy').textContent='プラン全文をコピー',1800);}).catch(()=>{});
+    const txt=T('【賢人会議・七日の修行】\n目標: ','[Council of Sages · Seven-Day Practice]\nGoal: ')+rec.goal+T('\n指針: 「','\nGuiding word: ')+rec.aphorism+T('」— ',' — ')+rec.sage.name+'\n\n'
+      +rec.actions.map(a=>'■'+a.step+T('\n 合図:','\n Cue: ')+a.when+T('\n 最初の5分:','\n First 5 min: ')+a.first5+T('\n もし','\n If ')+a.obstacle+T('なら → ',' → ')+a.ifthen).join('\n')
+      +'\n\n'+rec.week.map((w,i)=>T((i+1)+'日目: ','Day '+(i+1)+': ')+w.task).join('\n');
+    navigator.clipboard.writeText(txt).then(()=>{$('plan-copy').textContent=T('コピーしました ✓','Copied ✓');setTimeout(()=>$('plan-copy').textContent=T('プラン全文をコピー','Copy full plan'),1800);}).catch(()=>{});
   });
   document.querySelectorAll('#days input').forEach(cb=>cb.addEventListener('change',async()=>{
     const i=+cb.dataset.i;rec.checks[i]=cb.checked;
@@ -681,16 +703,16 @@ async function refreshSaved(){
     return `<div class="pl-item">
       <div class="info">
         <p class="ttl">「${esc(r.aphorism)}」</p>
-        <p class="meta">${esc(r.sage.name)} ／ ${d}/7日 ／ ${esc(r.created)}〜</p>
+        <p class="meta">${esc(r.sage.name)} · ${d}/7${T('日','d')} · ${esc(r.created)}〜</p>
       </div>
-      <button class="open" data-k="${esc(r.key)}">続ける</button>
-      <button class="del" data-k="${esc(r.key)}" aria-label="削除">✕</button>
+      <button class="open" data-k="${esc(r.key)}">${T('続ける','Continue')}</button>
+      <button class="del" data-k="${esc(r.key)}" aria-label="${T('削除','Delete')}">✕</button>
     </div>`;}).join('');
   document.querySelectorAll('#saved-list .open').forEach(b=>b.addEventListener('click',async()=>{
     const r=await store.get(b.dataset.k);if(r)renderPlan(r);
   }));
   document.querySelectorAll('#saved-list .del').forEach(b=>b.addEventListener('click',async()=>{
-    if(confirm('この修行を削除しますか?')){await store.del(b.dataset.k);refreshSaved();}
+    if(confirm(T('この修行を削除しますか?','Delete this practice?'))){await store.del(b.dataset.k);refreshSaved();}
   }));
 }
 
@@ -702,7 +724,7 @@ async function saveEn(s){
   await store.set(key,{key,name:s.name,era:s.era||'',school:s.school||'知',sealChar:s.sealChar||'賢',
     philosophy:s.philosophy||'',firstMet:new Date().toISOString().slice(0,10),msgs:[]});
 }
-function bondRank(n){return n<3?'初対面':n<8?'知己':n<16?'友':'師友';}
+function bondRank(n){return n<3?T('初対面','New'):n<8?T('知己','Acquainted'):n<16?T('友','Friend'):T('師友','Kindred');}
 function personaPrompt(rec,extra){
   const hist=rec.msgs.slice(-12).map(m=>(m.role==='user'?'相談者':rec.name)+':'+m.content).join('\n');
   return `あなたは歴史上の偉人「${rec.name}」(${rec.era}、思想: ${rec.philosophy})として、現代の相談者と語らいます。これはAIによる敬意ある創作であり、本人の実際の発言ではない前提です。${rec.name}の思想と語り口を一貫して保ち、120〜180字で応答してください。教えを一方的に説かず、時に相手へ問い返すこと。現代の事柄には、その人らしい驚きや解釈で応じてよい。相談者との縁: 対話${Math.floor(rec.msgs.length/2)}往復(${bondRank(Math.floor(rec.msgs.length/2))})。縁が深いほど砕けた親しみを込めてよい。人柄の魅力(機知・情熱・艶)も品位の範囲で表現してよいが、賢者としての一線と故人への敬意は必ず保つこと。
@@ -718,7 +740,7 @@ async function openTalk(key){
   if(rec.msgs.length===0){
     typing(true);
     try{
-      const t=await askClaudeText(personaPrompt(rec,'相談者が初めて対話の間を訪れました。初対面の挨拶を80字以内で。'));
+      const t=await askClaudeText(personaPrompt(rec,T('相談者が初めて対話の間を訪れました。初対面の挨拶を80字以内で。','The visitor has entered for the first time. Greet them in about 40 words.')));
       rec.msgs.push({role:'sage',content:t});
       await store.set(rec.key,rec);
       renderTalk(rec);
@@ -740,17 +762,17 @@ function renderTalk(rec){
         <h3>${esc(rec.name)}</h3>
         <p class="sub">${esc(rec.era)} ／ ${esc(rec.philosophy)}</p>
       </div>
-      <span class="bond">${bondRank(cnt)} ・ ${cnt}往復</span>
+      <span class="bond">${bondRank(cnt)} · ${cnt}${T('往復',' turns')}</span>
     </div>
     <div class="talk-log" id="talk-log">
       ${rec.msgs.map(m=>`<div class="msg ${m.role==='user'?'user':'sage'}">${esc(m.content)}</div>`).join('')}
     </div>
     <div class="talk-input">
-      <textarea id="talk-text" placeholder="${esc(rec.name)}に話しかける……"></textarea>
-      <button class="cta" id="talk-send">送る</button>
+      <textarea id="talk-text" placeholder="${esc(rec.name)}${T('に話しかける……',' — say something…')}"></textarea>
+      <button class="cta" id="talk-send">${T('送る','Send')}</button>
     </div>
     <div class="after">
-      <button class="ghost" id="talk-home">灯火の間に戻る</button>
+      <button class="ghost" id="talk-home">${T('灯火の間に戻る','Back to the hall')}</button>
     </div>`;
   $('talk-send').addEventListener('click',()=>sendTalk(rec));
   $('talk-text').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){sendTalk(rec);}});
@@ -774,7 +796,7 @@ async function sendTalk(rec){
     renderTalk(rec);
   }catch(e){
     typing(false);$('talk-send').disabled=false;
-    const d=document.createElement('div');d.className='msg sage';d.textContent='(声が届きませんでした。もう一度お願いします)';log.appendChild(d);
+    const d=document.createElement('div');d.className='msg sage';d.textContent=T('(声が届きませんでした。もう一度お願いします)',"(The voice didn't reach. Please try again.)");log.appendChild(d);
     rec.msgs.pop();
   }
 }
@@ -791,25 +813,25 @@ async function refreshEn(){
       <div class="sseal" aria-hidden="true">${esc(r.sealChar)}</div>
       <div class="info">
         <p class="ttl">${esc(r.name)}</p>
-        <p class="meta">${esc(r.philosophy)} ／ ${bondRank(c)}(${c}往復)／ ${esc(r.firstMet)}に出会う</p>
+        <p class="meta">${esc(r.philosophy)} · ${bondRank(c)} (${c}${T('往復',' turns')}) · ${T('出会い ','met ')}${esc(r.firstMet)}</p>
       </div>
-      <button class="open" data-k="${esc(r.key)}">語らう</button>
-      <button class="del" data-k="${esc(r.key)}" aria-label="縁を解く">✕</button>
+      <button class="open" data-k="${esc(r.key)}">${T('語らう','Talk')}</button>
+      <button class="del" data-k="${esc(r.key)}" aria-label="${T('縁を解く','Release bond')}">✕</button>
     </div>`;}).join('');
   document.querySelectorAll('#en-list .open').forEach(b=>b.addEventListener('click',()=>openTalk(b.dataset.k)));
   document.querySelectorAll('#en-list .del').forEach(b=>b.addEventListener('click',async()=>{
-    if(confirm('この縁を解きますか?(会話も消えます)')){await store.del(b.dataset.k);refreshEn();}
+    if(confirm(T('この縁を解きますか?(会話も消えます)','Release this bond? (the conversation is erased)'))){await store.del(b.dataset.k);refreshEn();}
   }));
 }
 
 function topType(){
   const e=Object.entries(state.tally).sort((a,b)=>b[1]-a[1]);
-  return e[0][1]===0?'未判定':SCHOOL_DESC[e[0][0]];
+  return e[0][1]===0?T('未判定','Undetermined'):schoolDesc(e[0][0]);
 }
 function renderProfile(){
   $('profile').style.display='block';
-  $('tally').innerHTML=Object.entries(state.tally).map(([k,v])=>`<span>${k}<b>${v}</b></span>`).join('');
-  $('type-line').textContent=state.rounds>0?('現在のあなた:'+topType()+'('+state.rounds+'回の会議より)'):'';
+  $('tally').innerHTML=Object.entries(state.tally).map(([k,v])=>`<span>${LANG==='en'?schoolLabel(k):k}<b>${v}</b></span>`).join('');
+  $('type-line').textContent=state.rounds>0?(T('現在のあなた:','You right now: ')+topType()+T('('+state.rounds+'回の会議より)',' (from '+state.rounds+' councils)')):'';
 }
 
 /* ---------- 賢者を訪ねる(指名) ---------- */
@@ -823,7 +845,7 @@ async function visitSage(){
     const r=await store.get(k);
     if(r&&(r.name===name||k==='en:'+name)){openTalk(k);return;}
   }
-  show('phase-loading');$('loading-text').textContent=name+' を探しています……';
+  show('phase-loading');$('loading-text').textContent=name+T(' を探しています……',' — searching…');
   const prompt=`「${name}」が実在した歴史上の人物(すでに亡くなっている故人)である場合のみ、その人物のプロフィールを作成してください。存命の人物・架空の人物・実在が確認できない場合は {"error":"招けない理由(30字以内、丁寧に)"} のみを出力。
 故人であれば、必ず次のJSONのみを出力(前置き・コードブロック禁止):
 {"name":"一般的な呼び名","era":"時代と肩書(例: 古代エジプト・プトレマイオス朝最後の女王)","school":"剛か柔か知か情のいずれか1字(剛=決断と行動 柔=受容と流れ 知=理性と分析 情=心と縁)","sealChar":"その人を象徴する漢字1字","philosophy":"思想や生き方の一言(10字以内)"}`;
@@ -847,8 +869,13 @@ const VCATS={
   ei:['織田信長','ナポレオン','坂本龍馬','カエサル','アレクサンドロス大王','土方歳三','西郷隆盛','チンギス・ハン'],
   bun:['ソクラテス','紫式部','レオナルド・ダ・ヴィンチ','清少納言','ゲーテ','アインシュタイン','千利休','ニーチェ']
 };
+const VCATS_EN={
+  jo:['Cleopatra','Yang Guifei','Marie Antoinette','Joan of Arc','Akiko Yosano','Hojo Masako','Elizabeth I','Coco Chanel'],
+  ei:['Oda Nobunaga','Napoleon','Sakamoto Ryoma','Julius Caesar','Alexander the Great','Hijikata Toshizo','Saigo Takamori','Genghis Khan'],
+  bun:['Socrates','Murasaki Shikibu','Leonardo da Vinci','Sei Shonagon','Goethe','Einstein','Sen no Rikyu','Nietzsche']
+};
 function renderVChips(cat){
-  $('vchips').innerHTML=(VCATS[cat]||[]).map(n=>`<button class="chip vc">${esc(n)}</button>`).join('');
+  $('vchips').innerHTML=((LANG==='en'?VCATS_EN:VCATS)[cat]||[]).map(n=>`<button class="chip vc">${esc(n)}</button>`).join('');
   document.querySelectorAll('#vchips .vc').forEach(c=>c.addEventListener('click',()=>{
     $('visit-name').value=c.textContent;visitSage();
   }));
@@ -860,7 +887,7 @@ document.querySelectorAll('.vtab').forEach(t=>t.addEventListener('click',()=>{
 renderVChips('jo');
 
 async function ichigoIchie(){
-  show('phase-loading');$('loading-text').textContent='運命の糸を手繰っています……';
+  show('phase-loading');$('loading-text').textContent=T('運命の糸を手繰っています……','Pulling the threads of fate…');
   const known=(await store.keys('en:')).map(k=>k.slice(3)).join('、')||'なし';
   const nth=1+Math.floor(Math.random()*10);
   const prompt=`東西の歴史から、語らって魅力的な故人の候補を頭の中で10名(有名すぎない人物も混ぜて)挙げ、その${nth}番目を選んでください。既に縁のある人物は除外: ${known}。必ず次のJSONのみを出力(前置き・コードブロック禁止):
@@ -879,9 +906,9 @@ function freeUsed(){try{return +(localStorage.getItem('kenjin:used')||0);}catch(
 function bumpFree(){try{localStorage.setItem('kenjin:used',String(freeUsed()+1));}catch(e){}updateBadge();}
 function updateBadge(){
   const bar=$('member-bar');if(!bar)return;
-  if(MEMBER_TOKEN){bar.innerHTML='✓ 会員 — 賢者と、語り放題';return;}
+  if(MEMBER_TOKEN){bar.innerHTML=T('✓ 会員 — 賢者と、語り放題','✓ Member — unlimited talks');return;}
   const left=Math.max(0,SAGE_FREE_LIMIT-freeUsed());
-  bar.innerHTML='無料お試し中（あと約'+left+'回）　<a href="#" id="member-link" style="color:var(--tomoshibi)">会員で解錠</a>';
+  bar.innerHTML=T('無料お試し中（あと約'+left+'回）　','Free trial (about '+left+' left) ')+'<a href="#" id="member-link" style="color:var(--tomoshibi)">'+T('会員で解錠','Unlock with membership')+'</a>';
   const lk=$('member-link');if(lk)lk.addEventListener('click',e=>{e.preventDefault();openUnlock();});
 }
 function openUnlock(){const b=$('unlock-box');if(!b)return;b.style.display='block';b.scrollIntoView({behavior:'smooth',block:'center'});}
@@ -891,7 +918,7 @@ function setMember(token){
   try{localStorage.setItem('kenjin:token',token);}catch(e){}
   closeUnlock();updateBadge();
   const m=$('u-msg');if(m)m.textContent='';
-  $('err-box').innerHTML='<div class="err" style="background:#1f2e1c;border-color:#3a6e2e;color:#c9f0bd">会員として解錠しました。賢者と、心ゆくまで語らってください。</div>';
+  $('err-box').innerHTML='<div class="err" style="background:#1f2e1c;border-color:#3a6e2e;color:#c9f0bd">'+T('会員として解錠しました。賢者と、心ゆくまで語らってください。',"Unlocked as a member. Talk with the sages to your heart's content.")+'</div>';
   show('phase-input');
 }
 async function redeemCode(){
@@ -901,8 +928,8 @@ async function redeemCode(){
   try{
     const r=await fetch(MEMBER_API+'/api/redeem',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code})});
     const d=await r.json();
-    if(d&&d.token)setMember(d.token);else m.textContent='コードが違うようです。note会員ページの「今月のコード」をご確認ください。';
-  }catch(e){m.textContent='通信に失敗しました。少し待って再度お試しください。';}
+    if(d&&d.token)setMember(d.token);else m.textContent=T('コードが違うようです。note会員ページの「今月のコード」をご確認ください。',"That code doesn't match. Please check this month's code on the note members page.");
+  }catch(e){m.textContent=T('通信に失敗しました。少し待って再度お試しください。','Connection failed. Please wait a moment and try again.');}
   btn.disabled=false;
 }
 async function redeemLicense(){
@@ -912,8 +939,8 @@ async function redeemLicense(){
   try{
     const r=await fetch(MEMBER_API+'/api/redeem-license',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({license:lic})});
     const d=await r.json();
-    if(d&&d.token)setMember(d.token);else m.textContent='ライセンスキーが確認できませんでした。購入時のキーをご確認ください。';
-  }catch(e){m.textContent='通信に失敗しました。少し待って再度お試しください。';}
+    if(d&&d.token)setMember(d.token);else m.textContent=T('ライセンスキーが確認できませんでした。購入時のキーをご確認ください。',"Couldn't verify that license key. Please check the key from your purchase.");
+  }catch(e){m.textContent=T('通信に失敗しました。少し待って再度お試しください。','Connection failed. Please wait a moment and try again.');}
   btn.disabled=false;
 }
 function initMember(){
@@ -924,7 +951,7 @@ function initMember(){
   const li=$('u-lic');if(li)li.addEventListener('keydown',e=>{if(e.key==='Enter')redeemLicense();});
   updateBadge();
 }
-refreshSaved();refreshEn();initMember();
+refreshSaved();refreshEn();initMember();localizeStatic();
 </script>
 </body>
 </html>
