@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>賢人会議 — 悩みを、七日の行動に変える</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lacquer:#16141f; --lacquer2:#1e1b2b; --washi:#efe7d6; --sumi:#2a2620;
+  --tomoshibi:#d8a24a; --shu:#c3452e; --indigo:#4a4e78;
+  --serif:'Shippori Mincho B1',serif; --sans:'Zen Kaku Gothic New',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--lacquer);
+  background-image:radial-gradient(ellipse 90% 55% at 50% -5%, #2b2440 0%, transparent 60%);
+  color:var(--washi);font-family:var(--sans);min-height:100vh;line-height:1.75;
+}
+.wrap{max-width:560px;margin:0 auto;padding:28px 20px 80px}
+header{text-align:center;padding:18px 0 6px}
+.crest{width:52px;height:52px;margin:0 auto 14px;border:1.5px solid var(--tomoshibi);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;font-size:22px;color:var(--tomoshibi)}
+h1{font-family:var(--serif);font-weight:800;font-size:34px;letter-spacing:.14em}
+.tagline{margin-top:8px;font-size:13px;letter-spacing:.2em;color:#9a94b8}
+.rule{width:64px;height:1px;background:var(--tomoshibi);opacity:.6;margin:22px auto}
+.candle{display:flex;justify-content:center;margin:6px 0 18px}
+.flame{width:16px;height:26px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;
+  background:radial-gradient(circle at 50% 78%, #fff3c8 0%, var(--tomoshibi) 45%, #a4531f 85%, transparent 100%);
+  filter:blur(.6px);animation:flicker 2.8s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes flicker{0%,100%{transform:scaleY(1)}25%{transform:scaleY(1.12) rotate(-2deg)}55%{transform:scaleY(.94) rotate(1.5deg)}80%{transform:scaleY(1.06)}}
+.panel{background:var(--lacquer2);border:1px solid #35304d;border-radius:6px;padding:22px}
+label.q{display:block;font-family:var(--serif);font-size:17px;letter-spacing:.08em;margin-bottom:14px}
+textarea{width:100%;min-height:96px;resize:vertical;background:#141220;border:1px solid #3d3860;border-radius:4px;
+  color:var(--washi);font-family:var(--sans);font-size:15px;line-height:1.7;padding:12px}
+textarea:focus{outline:2px solid var(--tomoshibi);outline-offset:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px}
+.chip{border:1px solid var(--indigo);background:transparent;color:#b9b3d6;border-radius:999px;padding:5px 14px;
+  font-size:12.5px;cursor:pointer;font-family:var(--sans);transition:all .18s}
+.chip:hover{border-color:var(--tomoshibi);color:var(--tomoshibi)}
+.cta{display:block;width:100%;padding:15px;border:none;border-radius:4px;cursor:pointer;background:var(--tomoshibi);
+  color:#241a08;font-family:var(--serif);font-weight:800;font-size:17px;letter-spacing:.22em;transition:transform .15s}
+.cta:hover{transform:translateY(-1px)}
+.cta:disabled{opacity:.45;cursor:default}
+button:focus-visible{outline:2px solid var(--washi);outline-offset:2px}
+.ghost{padding:13px;border-radius:4px;cursor:pointer;background:transparent;border:1px solid var(--indigo);
+  color:#c9c3e4;font-family:var(--serif);font-size:15px;letter-spacing:.14em;transition:all .18s;width:100%}
+.ghost:hover{border-color:var(--tomoshibi);color:var(--tomoshibi)}
+.loading{text-align:center;padding:52px 0}
+.loading .dots{display:flex;gap:22px;justify-content:center;margin-bottom:22px}
+.loading .flame{animation-delay:var(--d)}
+.loading p{font-family:var(--serif);letter-spacing:.18em;color:#b9b3d6;font-size:15px}
+.council-head{text-align:center;margin:8px 0 20px}
+.council-head .worry{font-size:13px;color:#9a94b8}
+.council-head h2{font-family:var(--serif);font-size:21px;letter-spacing:.14em;margin-top:6px}
+.sage{background:var(--washi);color:var(--sumi);border-radius:5px;padding:22px 20px 18px;margin-bottom:18px;
+  position:relative;box-shadow:0 4px 18px rgba(0,0,0,.45);opacity:0;transform:translateY(16px);animation:rise .55s ease forwards}
+.sage:nth-child(2){animation-delay:.15s}.sage:nth-child(3){animation-delay:.3s}
+@keyframes rise{to{opacity:1;transform:none}}
+.seal{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:4px;background:var(--shu);
+  color:#f6ded2;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;
+  font-size:22px;box-shadow:inset 0 0 0 2px rgba(246,222,210,.55);transform:rotate(-4deg)}
+.school{display:inline-block;font-size:11px;letter-spacing:.2em;color:var(--shu);border:1px solid var(--shu);
+  border-radius:2px;padding:1px 8px;margin-bottom:10px}
+.sage h3{font-family:var(--serif);font-size:20px}
+.sage .era{font-size:12px;color:#7a7264;margin:2px 0 12px}
+.sage .advice{font-size:14.5px;line-height:1.9}
+.sage .maxim{margin-top:14px;padding-top:12px;border-top:1px solid #d5c9ac;font-family:var(--serif);font-size:15px;color:#5c4a1e}
+.pick{margin-top:16px;width:100%;padding:11px;border-radius:3px;cursor:pointer;background:transparent;
+  border:1.5px solid var(--sumi);color:var(--sumi);font-family:var(--serif);font-weight:600;font-size:14.5px;
+  letter-spacing:.2em;transition:all .18s}
+.pick:hover{background:var(--sumi);color:var(--washi)}
+.rx,.plancard{background:var(--washi);color:var(--sumi);border-radius:5px;padding:28px 22px;position:relative;
+  box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.eyebrow{font-size:11px;letter-spacing:.32em;color:#8a7f68;text-align:center}
+.rx h2,.plancard h2{font-family:var(--serif);font-size:22px;letter-spacing:.08em;text-align:center;margin:8px 0 4px}
+.rx .from{text-align:center;font-size:12.5px;color:#7a7264;margin-bottom:18px}
+.aphorism{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.9;text-align:center;
+  padding:16px 6px;border-top:1px solid #d5c9ac;border-bottom:1px solid #d5c9ac}
+.rx ol{margin:18px 0 4px;list-style:none;counter-reset:step}
+.rx li{counter-increment:step;display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px dashed #d5c9ac;font-size:14.5px}
+.rx li::before{content:counter(step,cjk-ideographic);font-family:var(--serif);font-weight:800;color:var(--shu);font-size:17px;flex-shrink:0}
+.rx .enc{margin-top:16px;font-size:13.5px;color:#5c5240;line-height:1.9}
+.bigseal{position:absolute;bottom:20px;right:20px;width:60px;height:60px;border-radius:5px;background:var(--shu);
+  color:#f6ded2;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;
+  font-size:28px;transform:rotate(-6deg);box-shadow:inset 0 0 0 2.5px rgba(246,222,210,.55);
+  animation:stamp .5s cubic-bezier(.2,1.6,.4,1) .4s both}
+@keyframes stamp{from{transform:rotate(-14deg) scale(2);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
+.after{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.rebuttal{background:#f7f1e2;border-left:3px solid var(--shu);padding:12px 14px;margin:0 0 16px;font-size:13.5px}
+.rebuttal .rvoice{line-height:1.9}
+.rebuttal .rinsight{margin-top:8px;font-family:var(--serif);font-size:13px;color:#5c4a1e}
+.rebuttal b{color:var(--shu)}
+.obj-panel{margin-top:4px}
+/* ---- 実行の間 ---- */
+.goalbox{background:#f7f1e2;border:1.5px solid var(--shu);border-radius:4px;padding:12px 14px;margin:16px 0;
+  font-family:var(--serif);font-size:15px;text-align:center}
+.goalbox b{color:var(--shu)}
+.act{border:1px solid #d5c9ac;border-radius:4px;padding:14px;margin-bottom:12px;font-size:13.5px}
+.act h4{font-family:var(--serif);font-size:15px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px dashed #d5c9ac}
+.act dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.act dt{color:var(--shu);font-weight:700;font-size:12px;white-space:nowrap;letter-spacing:.08em}
+.act dd{line-height:1.7}
+.weekhead{font-family:var(--serif);font-size:16px;letter-spacing:.14em;margin:22px 0 6px;text-align:center}
+.progress{height:8px;background:#ddd2b6;border-radius:99px;overflow:hidden;margin:8px 0 14px}
+.progress i{display:block;height:100%;background:var(--shu);transition:width .3s;border-radius:99px}
+.day{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px dashed #d5c9ac;font-size:14px}
+.day input{width:22px;height:22px;accent-color:var(--shu);flex-shrink:0;cursor:pointer}
+.day .dnum{font-family:var(--serif);font-weight:800;color:#8a7f68;width:2.4em;flex-shrink:0;font-size:13px}
+.day.done .dtask{text-decoration:line-through;color:#9a8f78}
+.kaiden{margin-top:18px;text-align:center;padding:18px;border:2px solid var(--shu);border-radius:5px;
+  background:#fbf3e8;display:none}
+.kaiden.show{display:block;animation:stamp .5s cubic-bezier(.2,1.6,.4,1) both}
+.kaiden .kseal{width:70px;height:70px;margin:0 auto 10px;border-radius:6px;background:var(--shu);color:#f6ded2;
+  display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;font-size:26px;transform:rotate(-5deg)}
+.kaiden p{font-family:var(--serif);font-size:15px}
+.bridge{margin-top:20px;padding-top:16px;border-top:1px solid #d5c9ac}
+.bridge h5{font-size:12px;letter-spacing:.24em;color:#8a7f68;text-align:center;margin-bottom:12px}
+.timeline-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:12px;font-size:13.5px}
+.timeline-row input{font-family:var(--sans);font-size:15px;padding:6px 10px;border:1px solid #b7a985;border-radius:4px;background:#fff;color:var(--sumi)}
+.bbtn{display:block;width:100%;padding:11px;margin-bottom:9px;border-radius:3px;cursor:pointer;text-align:center;
+  background:var(--sumi);border:1.5px solid var(--sumi);color:var(--washi);font-family:var(--serif);font-size:14px;
+  letter-spacing:.14em;text-decoration:none;transition:opacity .15s}
+.bbtn:hover{opacity:.85}
+.bbtn.alt{background:transparent;color:var(--sumi)}
+/* ---- 保存済みプラン ---- */
+.saved{margin-top:26px}
+.saved h4{font-family:var(--serif);font-size:14px;letter-spacing:.24em;color:#9a94b8;text-align:center;margin-bottom:12px}
+.pl-item{background:var(--lacquer2);border:1px solid #35304d;border-radius:5px;padding:14px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:12px}
+.pl-item .info{flex:1;min-width:0}
+.pl-item .ttl{font-family:var(--serif);font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-item .meta{font-size:11.5px;color:#8f88ad}
+.pl-item .open{border:1px solid var(--tomoshibi);background:transparent;color:var(--tomoshibi);border-radius:3px;
+  padding:7px 14px;cursor:pointer;font-family:var(--serif);font-size:13px;letter-spacing:.1em;flex-shrink:0}
+.pl-item .del{border:none;background:none;color:#6b6588;cursor:pointer;font-size:16px;flex-shrink:0}
+.profile{margin-top:34px;text-align:center}
+.profile h4{font-family:var(--serif);font-size:14px;letter-spacing:.26em;color:#9a94b8;margin-bottom:12px}
+.tally{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.tally span{border:1px solid #3d3860;border-radius:3px;padding:6px 12px;font-size:13px;color:#b9b3d6;font-family:var(--serif)}
+.tally b{color:var(--tomoshibi);margin-left:6px}
+.type-line{margin-top:14px;font-family:var(--serif);font-size:16px;color:var(--washi)}
+.err{background:#3a1f1c;border:1px solid #7a3a2e;border-radius:4px;padding:14px 16px;font-size:13.5px;color:#f0c9bd;margin-top:16px}
+/* ---- 問診の間 ---- */
+.intro{font-size:14px;line-height:1.9;margin:14px 0 20px;padding:12px 14px;background:#f7f1e2;border-left:3px solid var(--shu)}
+.iq{margin-bottom:16px}
+.iq label{display:block;font-family:var(--serif);font-size:14.5px;margin-bottom:7px;line-height:1.8}
+.iq label b{color:var(--shu);margin-right:8px;font-size:16px}
+.iq textarea{min-height:58px;background:#fdfaf3;border:1px solid #b7a985;color:var(--sumi)}
+.iq .hint{font-size:11.5px;color:#8a7f68;margin-top:3px}
+/* ---- 賢者を訪ねる ---- */
+.vrow{display:flex;gap:10px}
+.vrow input{flex:1;min-width:0;background:#141220;border:1px solid #3d3860;border-radius:4px;color:var(--washi);
+  font-family:var(--sans);font-size:15px;padding:11px 12px}
+.vrow input:focus{outline:2px solid var(--tomoshibi);outline-offset:1px}
+.vrow .cta{width:auto;padding:0 18px;font-size:15px;letter-spacing:.1em;flex-shrink:0}
+.vmsg{font-size:12.5px;color:#e8b9a8;margin-top:10px;min-height:1em}
+.vtab.on{background:var(--tomoshibi);color:#241a08;border-color:var(--tomoshibi);font-weight:700}
+/* ---- 縁・対話の間 ---- */
+.sseal{width:38px;height:38px;border-radius:4px;background:var(--shu);color:#f6ded2;display:flex;align-items:center;
+  justify-content:center;font-family:var(--serif);font-weight:800;font-size:18px;transform:rotate(-4deg);flex-shrink:0}
+.talk-head{background:var(--washi);color:var(--sumi);border-radius:5px;padding:14px 16px;display:flex;gap:13px;
+  align-items:center;box-shadow:0 4px 18px rgba(0,0,0,.4);margin-bottom:14px}
+.talk-head h3{font-family:var(--serif);font-size:17px;line-height:1.4}
+.talk-head .sub{font-size:11.5px;color:#7a7264}
+.talk-head .bond{margin-left:auto;font-family:var(--serif);font-size:11.5px;color:var(--shu);
+  border:1px solid var(--shu);border-radius:2px;padding:2px 8px;white-space:nowrap}
+.talk-log{display:flex;flex-direction:column;gap:12px;padding:6px 0;min-height:160px}
+.msg{max-width:86%;padding:11px 14px;border-radius:6px;font-size:14px;line-height:1.85;white-space:pre-wrap}
+.msg.sage{background:var(--washi);color:var(--sumi);align-self:flex-start;border-top-left-radius:0;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.msg.user{background:#343056;color:#e6e2f5;align-self:flex-end;border-top-right-radius:0}
+.msg.typing{color:#8a7f68;font-family:var(--serif);letter-spacing:.3em}
+.talk-input{display:flex;gap:10px;margin-top:14px;align-items:stretch}
+.talk-input textarea{min-height:52px;flex:1}
+.talk-input .cta{width:auto;padding:0 20px;letter-spacing:.1em;font-size:15px}
+footer{margin-top:44px;text-align:center;font-size:11px;color:#6b6588;line-height:1.9}
+.hidden{display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.sage,.bigseal,.kaiden.show{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="crest">賢</div>
+    <h1>賢人会議</h1>
+    <p class="tagline">悩みを、七日の行動に変える</p>
+    <div class="rule"></div>
+    <div id="member-bar" style="font-size:12.5px;color:#9a94b8;margin-top:2px;min-height:1.2em"></div>
+  </header>
+
+  <!-- PHASE 1 -->
+  <section id="phase-input">
+    <div class="candle"><div class="flame"></div></div>
+    <div class="panel">
+      <label class="q" for="worry">いま、灯したい悩みは何ですか。</label>
+      <textarea id="worry" placeholder="例:定年後の収入源をどう育てるか迷っている。安定を取るか、挑戦を取るか。"></textarea>
+      <div class="chips" role="group" aria-label="悩みの種類">
+        <button class="chip" data-t="仕事とキャリアの方向性に迷っている">仕事</button>
+        <button class="chip" data-t="大切な人との関係がぎくしゃくしている">人間関係</button>
+        <button class="chip" data-t="お金の不安が頭から離れない">お金</button>
+        <button class="chip" data-t="続けるべきか、やめるべきか決められないことがある">決断</button>
+        <button class="chip" data-t="創作を続ける意味を見失いかけている">創作</button>
+        <button class="chip" data-t="残りの人生で何を成すべきか考えている">人生</button>
+      </div>
+      <button class="cta" id="convene">賢人を召集する</button>
+    </div>
+    <div class="panel" id="unlock-box" style="display:none;margin-top:14px;border-color:var(--tomoshibi)">
+      <label class="q">🔑 会員で解錠 — 賢者と、語り放題</label>
+      <p style="font-size:12.5px;color:#9a94b8;margin:-6px 0 12px;line-height:1.7">叡智の灯火の会員（note／Gumroad）なら、賢人会議も使い放題になります。</p>
+      <div class="vrow">
+        <input type="text" id="u-code" placeholder="noteの今月コード（TOMO-XXXX）" autocomplete="off">
+        <button class="cta" id="u-code-go">解錠</button>
+      </div>
+      <p style="text-align:center;font-size:11.5px;color:#7a7264;margin:12px 0">— または —</p>
+      <div class="vrow">
+        <input type="text" id="u-lic" placeholder="Gumroadのライセンスキー" autocomplete="off">
+        <button class="cta" id="u-lic-go">解錠</button>
+      </div>
+      <p class="vmsg" id="u-msg"></p>
+      <button class="ghost" id="u-close" style="margin-top:12px">閉じる</button>
+    </div>
+    <div class="saved" id="visit-sec">
+      <h4>賢者を訪ねる</h4>
+      <div class="panel">
+        <label class="q" for="visit-name">会いたい偉人の名を、そのまま。</label>
+        <div class="vrow">
+          <input type="text" id="visit-name" placeholder="例: クレオパトラ" autocomplete="off">
+          <button class="cta" id="visit-go">会いに行く</button>
+        </div>
+        <div class="chips" style="margin:16px 0 0" role="tablist" aria-label="賢者の間口">
+          <button class="chip vtab on" data-c="jo">女傑</button>
+          <button class="chip vtab" data-c="ei">英傑</button>
+          <button class="chip vtab" data-c="bun">文人・賢者</button>
+        </div>
+        <div class="chips" id="vchips" style="margin:10px 0 0"></div>
+        <button class="ghost" id="ichigo" style="margin-top:16px">一期一会 — 思いがけない誰かに会う</button>
+        <p class="vmsg" id="visit-msg"></p>
+      </div>
+    </div>
+    <div class="saved" id="en-sec" style="display:none">
+      <h4>結んだ縁 — 賢者と語らう</h4>
+      <div id="en-list"></div>
+    </div>
+    <div class="saved" id="saved" style="display:none">
+      <h4>進行中の修行</h4>
+      <div id="saved-list"></div>
+    </div>
+  </section>
+
+  <!-- PHASE 5: 対話の間 -->
+  <section id="phase-talk" class="hidden"></section>
+
+  <!-- LOADING -->
+  <section id="phase-loading" class="hidden">
+    <div class="loading">
+      <div class="dots">
+        <div class="flame" style="--d:0s"></div><div class="flame" style="--d:.4s"></div><div class="flame" style="--d:.8s"></div>
+      </div>
+      <p id="loading-text">賢者たちが集まっています……</p>
+    </div>
+  </section>
+
+  <!-- PHASE 2 -->
+  <section id="phase-council" class="hidden">
+    <div class="council-head">
+      <p class="worry" id="worry-echo"></p>
+      <h2>三賢、参上</h2>
+    </div>
+    <div id="sages"></div>
+  </section>
+
+  <!-- PHASE 2.5: 問診の間 -->
+  <section id="phase-intake" class="hidden"></section>
+
+  <!-- PHASE 3 -->
+  <section id="phase-rx" class="hidden"></section>
+
+  <!-- PHASE 4: 実行の間 -->
+  <section id="phase-plan" class="hidden"></section>
+
+  <div id="err-box"></div>
+
+  <div class="profile" id="profile" style="display:none">
+    <h4>あなたの叡智型</h4>
+    <div class="tally" id="tally"></div>
+    <p class="type-line" id="type-line"></p>
+  </div>
+
+  <footer>
+    賢者の言葉・処方箋・実行プランはAIによる創作です。実在した人物の実際の発言ではありません。<br>
+    原案リスペクト:叡智の灯火 (eichinohi.com)
+  </footer>
+</div>
+
+<script>
+/* ================================================================
+   設定: あなたの中継サーバー(Cloudflare Worker)のURLに書き換える
+   例: const API_ENDPOINT='https://kenjin-proxy.yourname.workers.dev';
+   ================================================================ */
+const API_ENDPOINT='https://api.eichinohi.com/api/sage';
+const MEMBER_API='https://api.eichinohi.com';
+const SAGE_FREE_LIMIT=12;
+let MEMBER_TOKEN='';
+try{ MEMBER_TOKEN=localStorage.getItem('kenjin:token')||''; }catch(e){}
+
+const $=id=>document.getElementById(id);
+const phases=['phase-input','phase-loading','phase-council','phase-intake','phase-rx','phase-plan','phase-talk'];
+function show(id){phases.forEach(p=>$(p).classList.toggle('hidden',p!==id));$('err-box').innerHTML='';window.scrollTo({top:0,behavior:'smooth'});}
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+
+const state={worry:'',sages:[],rx:null,sage:null,tally:{'剛':0,'柔':0,'知':0,'情':0},rounds:0};
+const SCHOOL_DESC={'剛':'剛 — 決断と行動の人','柔':'柔 — 受容と流れの人','知':'知 — 理性と分析の人','情':'情 — 心と縁の人'};
+
+/* ---------- storage (localStorage永続化、失敗時はメモリ) ---------- */
+const mem={};
+const LS='kenjin:';
+const store={
+  async set(k,v){ try{ localStorage.setItem(LS+k,JSON.stringify(v)); return; }catch(e){} mem[k]=JSON.stringify(v); },
+  async get(k){ try{ const s=localStorage.getItem(LS+k); if(s!=null)return JSON.parse(s); }catch(e){} return mem[k]?JSON.parse(mem[k]):null; },
+  async del(k){ try{ localStorage.removeItem(LS+k); }catch(e){} delete mem[k]; },
+  async keys(pfx){
+    const out=[];
+    try{
+      for(let i=0;i<localStorage.length;i++){
+        const k=localStorage.key(i);
+        if(k&&k.startsWith(LS+pfx))out.push(k.slice(LS.length));
+      }
+    }catch(e){}
+    Object.keys(mem).forEach(k=>{if(k.startsWith(pfx)&&!out.includes(k))out.push(k);});
+    return out;
+  }
+};
+
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{$('worry').value=c.dataset.t;$('worry').focus();}));
+
+function apiHeaders(){const h={"Content-Type":"application/json"};if(MEMBER_TOKEN)h["Authorization"]="Bearer "+MEMBER_TOKEN;return h;}
+async function apiCall(prompt){
+  const res=await fetch(API_ENDPOINT,{
+    method:"POST",headers:apiHeaders(),
+    body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:prompt}]})
+  });
+  if(res.status===402){const e=new Error('無料のお試しはここまでです');e.quota=true;throw e;}
+  const data=await res.json();
+  if(data.error)throw new Error(data.error.message||'API error');
+  if(!MEMBER_TOKEN)bumpFree();
+  return data;
+}
+async function askClaude(prompt){
+  const data=await apiCall(prompt);
+  const text=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n');
+  return JSON.parse(text.replace(/```json|```/g,'').trim());
+}
+async function askClaudeText(prompt){
+  const data=await apiCall(prompt);
+  return (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n').trim();
+}
+function showError(err){
+  if(err&&err.quota){
+    if(MEMBER_TOKEN){MEMBER_TOKEN='';try{localStorage.removeItem('kenjin:token');}catch(e){}updateBadge();}
+    show('phase-input');openUnlock();return;
+  }
+  const msg=(typeof err==='string')?err:((err&&err.message)||'エラー');
+  $('err-box').innerHTML='<div class="err">中断されました('+esc(msg)+')。もう一度お試しください。</div>';
+  $('phase-loading').classList.add('hidden');$('phase-input').classList.remove('hidden');
+}
+
+/* ---------- phase 1 → council ---------- */
+$('convene').addEventListener('click',async()=>{
+  const worry=$('worry').value.trim();
+  if(!worry){$('worry').focus();return;}
+  state.worry=worry;
+  show('phase-loading');$('loading-text').textContent='賢者たちが集まっています……';
+  const prompt=`あなたは歴史上の偉人の思想と文体を深く理解した脚本家です。次の悩みに対し、思想が互いに対立する実在した偉人(故人)3名を選び、各人の声で助言を創作してください。東西・時代を意図的に混ぜること。
+悩み:「${worry}」
+必ず次のJSONのみを出力(前置き・コードブロック禁止):
+{"sages":[{"name":"氏名","era":"時代と肩書","school":"剛か柔か知か情のいずれか1字","sealChar":"象徴する漢字1字","philosophy":"思想の一言ラベル(10字以内)","advice":"その人らしい口調での助言(100〜140字)","maxim":"格言風の一文(30字以内)"}]}
+条件: schoolは 剛=決断と行動 柔=受容と流れ 知=理性と分析 情=心と縁。3人の助言は方向性が明確に食い違うこと。故人への敬意を保った品位ある創作にすること。`;
+  try{
+    const out=await askClaude(prompt);
+    if(!out.sages||out.sages.length<3)throw new Error('形式不正');
+    state.sages=out.sages.slice(0,3);
+    renderCouncil();
+  }catch(e){showError(e);}
+});
+
+function renderCouncil(){
+  $('worry-echo').textContent='「'+state.worry+'」';
+  $('sages').innerHTML=state.sages.map((s,i)=>`
+    <article class="sage">
+      <div class="seal" aria-hidden="true">${esc(s.sealChar||'賢')}</div>
+      <span class="school">${esc(s.school||'知')}の道</span>
+      <h3>${esc(s.name)}</h3>
+      <p class="era">${esc(s.era||'')} ／ ${esc(s.philosophy||'')}</p>
+      <p class="advice">${esc(s.advice||'')}</p>
+      <p class="maxim">「${esc(s.maxim||'')}」</p>
+      <button class="pick" data-i="${i}">この賢者に従う</button>
+    </article>`).join('');
+  document.querySelectorAll('.pick').forEach(b=>b.addEventListener('click',()=>choose(+b.dataset.i)));
+  show('phase-council');
+}
+
+/* ---------- council → intake (問診) ---------- */
+async function choose(i){
+  const s=state.sages[i];state.sage=s;state.intake=[];
+  show('phase-loading');$('loading-text').textContent=s.name+' が問いを立てています……';
+  const prompt=`あなたは賢者 ${s.name}(${s.era}、思想: ${s.philosophy})。相談者の悩み:「${state.worry}」
+処方箋を書く前の問診として、本人の実情を深く知る質問を3つ、${s.name}らしい言葉で作成してください。必ず次のJSONのみを出力(前置き・コードブロック禁止):
+{"intro":"問診に入る前の一言(50字以内、その人の声で)","questions":["質問文(45字以内)","2つ目","3つ目"]}
+質問の観点は必ずこの3つ: 1)悩みの具体的な状況・経緯 2)これまで試したこと、時間や環境の制約 3)どうなれば「良し」と言えるか。誰にでも聞ける抽象的な質問は禁止。悩みの文面に即した固有の質問にすること。`;
+  try{
+    const q=await askClaude(prompt);
+    if(!q.questions||q.questions.length<3)throw new Error('形式不正');
+    renderIntake(s,q);
+  }catch(e){showError(e);}
+}
+
+function renderIntake(s,q){
+  $('phase-intake').innerHTML=`
+    <div class="talk-head">
+      <div class="sseal" aria-hidden="true">${esc(s.sealChar||'賢')}</div>
+      <div>
+        <h3>${esc(s.name)}の問診</h3>
+        <p class="sub">${esc(s.philosophy||'')} — 良い処方は、良い問診から</p>
+      </div>
+    </div>
+    <div class="rx">
+      <p class="intro">${esc(q.intro||'')}</p>
+      ${q.questions.slice(0,3).map((qq,i)=>`
+        <div class="iq">
+          <label for="iq-${i}"><b>${['一','二','三'][i]}</b>${esc(qq)}</label>
+          <textarea id="iq-${i}" placeholder="思いつくまま、率直に。"></textarea>
+        </div>`).join('')}
+      <p class="iq hint" style="margin-bottom:14px">全部でなくて構いません。答えられるものだけで大丈夫です。</p>
+      <button class="cta" id="intake-send">これを踏まえて処方を頼む</button>
+    </div>
+    <div class="after">
+      <button class="ghost" id="intake-back">会議に戻る</button>
+    </div>`;
+  $('intake-send').addEventListener('click',()=>{
+    const qa=q.questions.slice(0,3).map((qq,i)=>({q:qq,a:$('iq-'+i).value.trim()})).filter(x=>x.a);
+    if(!qa.length){$('iq-0').focus();$('iq-0').placeholder='一つで良いので、教えてください。';return;}
+    state.intake=qa;
+    writeRx();
+  });
+  $('intake-back').addEventListener('click',()=>renderCouncil());
+  show('phase-intake');
+}
+
+function intakeText(){
+  return (state.intake||[]).map(x=>'問「'+x.q+'」→ 答「'+x.a+'」').join('\n');
+}
+
+/* ---------- intake → prescription ---------- */
+async function writeRx(){
+  const s=state.sage;
+  show('phase-loading');$('loading-text').textContent=s.name+' が筆を執っています……';
+  const prompt=`悩み:「${state.worry}」
+賢者: ${s.name}(${s.philosophy})。その基本姿勢:「${s.advice}」
+問診での本人の答え:
+${intakeText()}
+この人だけのための処方箋を創作してください。必ず次のJSONのみを出力(前置き・コードブロック禁止):
+{"title":"処方箋の題(15字以内)","aphorism":"心に刻む一文(25字以内)","steps":["今日できる具体的行動(各35字以内)","2つ目","3つ目"],"encouragement":"${s.name}の声での励まし(60字以内、問診の答えに触れること)"}
+厳守条件: 1)stepsには問診の答えに出てきた固有の事情・言葉を必ず織り込む(一般論・誰にでも当てはまる助言は禁止) 2)答えで示された制約の範囲内で実行可能にする 3)本人が「良し」とした状態に直結する行動から始める 4)既に試したことの繰り返しは禁止。`;
+  try{
+    const rx=await askClaude(prompt);state.rx=rx;
+    const sc=(s.school&&state.tally.hasOwnProperty(s.school))?s.school:'知';
+    state.tally[sc]++;state.rounds++;
+    await saveEn(s);
+    renderRx(s,rx);
+  }catch(e){showError(e);}
+}
+
+function renderRx(s,rx,rev){
+  $('phase-rx').innerHTML=`
+    <div class="rx">
+      <p class="eyebrow">${rev?'改 訂 処 方 箋':'叡 智 の 処 方 箋'}</p>
+      <h2>${esc(rx.title||'処方箋')}</h2>
+      <p class="from">${esc(s.name)} より — ${esc(s.philosophy||'')}</p>
+      ${rev?`<div class="rebuttal">
+        <p class="rvoice">${esc(rev.reply)}</p>
+        <p class="rinsight">異議から見えた望み — <b>${esc(rev.insight)}</b></p>
+      </div>`:''}
+      <p class="aphorism">${esc(rx.aphorism||s.maxim||'')}</p>
+      <ol>${(rx.steps||[]).slice(0,3).map(t=>`<li>${esc(t)}</li>`).join('')}</ol>
+      <p class="enc">${esc(rx.encouragement||'')}</p>
+      <div class="bigseal" aria-hidden="true">${esc(s.sealChar||'賢')}</div>
+    </div>
+    <div class="after">
+      <button class="cta" id="to-plan">腹落ちした — 七日の修行に落とす</button>
+      <button class="ghost" id="objection-btn">異議あり — 賢者に問い返す</button>
+      <button class="ghost" id="talk-now">この賢者と語らう</button>
+      <button class="ghost" id="other-sage">別の賢者の声を聞く</button>
+      <button class="ghost" id="copy-btn">結果をコピーして共有する</button>
+      <button class="ghost" id="again">新しい悩みを灯す</button>
+    </div>
+    <div class="panel obj-panel hidden" id="obj-panel">
+      <label class="q" for="obj-text">どこが腹に落ちませんか。遠慮なくどうぞ。</label>
+      <div class="chips" role="group" aria-label="異議の種類">
+        <button class="chip oc" data-t="正直、難しすぎて動ける気がしない">難しすぎる</button>
+        <button class="chip oc" data-t="悩みの本質はそこではない気がする">的外れな気がする</button>
+        <button class="chip oc" data-t="正しいとは思うが、自分のやり方に合わない">自分らしくない</button>
+        <button class="chip oc" data-t="時間にも気持ちにも余裕がなく、現実的でない">余裕がない</button>
+        <button class="chip oc" data-t="頭では分かるが、怖くて一歩が踏み出せない">怖い</button>
+      </div>
+      <textarea id="obj-text" placeholder="納得できない理由を、自分の言葉で。"></textarea>
+      <button class="cta" id="obj-send" style="margin-top:14px">賢者に問い返す</button>
+    </div>`;
+  $('to-plan').addEventListener('click',makePlan);
+  $('objection-btn').addEventListener('click',()=>{$('obj-panel').classList.toggle('hidden');if(!$('obj-panel').classList.contains('hidden'))$('obj-text').focus();});
+  document.querySelectorAll('.oc').forEach(c=>c.addEventListener('click',()=>{$('obj-text').value=c.dataset.t;$('obj-text').focus();}));
+  $('obj-send').addEventListener('click',objectFlow);
+  $('other-sage').addEventListener('click',()=>renderCouncil());
+  $('talk-now').addEventListener('click',async()=>{await saveEn(s);openTalk('en:'+s.name);});
+  $('copy-btn').addEventListener('click',()=>{
+    const txt=`【賢人会議】\n悩み:${state.worry}\n選んだ賢者:${s.name}(${s.school}の道)\n処方:「${rx.aphorism||''}」\n#賢人会議`;
+    navigator.clipboard.writeText(txt).then(()=>{$('copy-btn').textContent='コピーしました ✓';setTimeout(()=>$('copy-btn').textContent='結果をコピーして共有する',1800);}).catch(()=>{});
+  });
+  $('again').addEventListener('click',()=>{$('worry').value='';show('phase-input');refreshSaved();refreshEn();});
+  renderProfile();
+  show('phase-rx');
+}
+
+/* ---------- objection → revised prescription ---------- */
+async function objectFlow(){
+  const obj=$('obj-text').value.trim();
+  if(!obj){$('obj-text').focus();return;}
+  const s=state.sage,rx=state.rx;
+  show('phase-loading');$('loading-text').textContent=s.name+' が問いに向き合っています……';
+  const prompt=`悩み:「${state.worry}」
+問診での本人の答え:
+${intakeText()}
+賢者 ${s.name}(${s.philosophy})の処方:「${rx.aphorism||''}」/ 行動案: ${(rx.steps||[]).join('、')}
+本人からの異議:「${obj}」
+あなたは${s.name}として、この異議に誠実に向き合ってください。反論や説得はせず、まず受け止めること。異議の中に隠れた本人の本当の望みを読み取り、それに合わせて処方を作り直すこと。行動のハードルは前回より必ず一段下げ、量より「始めやすさ」を優先すること。問診の答えにある固有の事情を必ず反映し、一般論は禁止。必ず次のJSONのみを出力(前置き・コードブロック禁止):
+{"reply":"${s.name}の声での返答。まず異議を受け止め、自分の考えを一言添える(90字以内)","insight":"異議から見えた本人の本当の望み(25字以内)","title":"改訂処方箋の題(15字以内)","aphorism":"新しい一文(25字以内)","steps":["前回より小さく具体的な行動(30字以内)","2つ目","3つ目"],"encouragement":"締めの励まし(50字以内)"}`;
+  try{
+    const r=await askClaude(prompt);
+    state.rx={title:r.title,aphorism:r.aphorism,steps:r.steps,encouragement:r.encouragement};
+    renderRx(s,state.rx,{reply:r.reply,insight:r.insight});
+  }catch(e){showError(e);}
+}
+
+/* ---------- prescription → executable plan ---------- */
+async function makePlan(){
+  const s=state.sage,rx=state.rx;
+  show('phase-loading');$('loading-text').textContent='行動計画を練り上げています……';
+  const prompt=`あなたは行動科学(実行意図・スモールステップ)に詳しいコーチです。以下を、実行可能な計画に落としてください。
+悩み:「${state.worry}」/ 方針: ${s.name}の助言「${rx.aphorism||s.maxim}」/ 行動案: ${(rx.steps||[]).join('、')}
+問診での本人の答え(制約と望みを厳守すること):
+${intakeText()}
+必ず次のJSONのみを出力(前置き・コードブロック禁止):
+{"goal":"7日後に達成したと言える測定可能な状態(25字以内)",
+"actions":[{"step":"行動の名前(15字以内)","when":"実行の合図(「朝食を終えたら」等のif-then形式、20字以内)","first5":"最初の5分でやる超具体的な一手(30字以内)","obstacle":"つまずきそうな点(20字以内)","ifthen":"もし◯◯なら△△する、という対策(30字以内)"}を3個],
+"week":[{"day":1,"task":"その日の10分アクション(25字以内、動詞で終える)"}から{"day":7}まで7個]}
+条件: weekは日を追うごとに少しずつ前進する設計。抽象語(頑張る・意識する等)は禁止。全て今日から可能な具体行動にすること。`;
+  try{
+    const plan=await askClaude(prompt);
+    plan.week=(plan.week||[]).slice(0,7);
+    const key='plan:'+Date.now();
+    const rec={key,worry:state.worry,sage:{name:s.name,school:s.school,sealChar:s.sealChar,philosophy:s.philosophy},
+      aphorism:rx.aphorism||s.maxim||'',goal:plan.goal||'',actions:(plan.actions||[]).slice(0,3),
+      week:plan.week,checks:[false,false,false,false,false,false,false],created:new Date().toISOString().slice(0,10)};
+    await store.set(key,rec);
+    renderPlan(rec);
+  }catch(e){showError(e);}
+}
+
+function pad(n){return String(n).padStart(2,'0');}
+function icsEscape(t){return String(t).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');}
+function planDates(time){ // 7 dates starting today at given HH:MM
+  const [h,m]=time.split(':').map(Number);const out=[];
+  for(let i=0;i<7;i++){const d=new Date();d.setDate(d.getDate()+i);d.setHours(h,m,0,0);out.push(d);}
+  return out;
+}
+function fmtLocal(d){return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';}
+
+function downloadICS(rec,time){
+  const dates=planDates(time);
+  let ics='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//KenjinKaigi//JP\r\n';
+  dates.forEach((d,i)=>{
+    const end=new Date(d.getTime()+15*60000);
+    ics+='BEGIN:VEVENT\r\nUID:'+rec.key+'-'+i+'@kenjinkaigi\r\n'
+      +'DTSTART:'+fmtLocal(d)+'\r\nDTEND:'+fmtLocal(end)+'\r\n'
+      +'SUMMARY:'+icsEscape('【賢人会議】'+(rec.week[i]?rec.week[i].task:'修行 '+(i+1)+'日目'))+'\r\n'
+      +'DESCRIPTION:'+icsEscape('「'+rec.aphorism+'」— '+rec.sage.name+'\n目標: '+rec.goal)+'\r\n'
+      +'BEGIN:VALARM\r\nTRIGGER:-PT0M\r\nACTION:DISPLAY\r\nDESCRIPTION:賢人会議\r\nEND:VALARM\r\nEND:VEVENT\r\n';
+  });
+  ics+='END:VCALENDAR\r\n';
+  const blob=new Blob([ics],{type:'text/calendar'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kenjin-kaigi-7days.ics';
+  document.body.appendChild(a);a.click();a.remove();
+}
+function gcalURL(rec,time){
+  const d=planDates(time)[0];const end=new Date(d.getTime()+15*60000);
+  const p=new URLSearchParams({action:'TEMPLATE',
+    text:'【賢人会議】'+(rec.week[0]?rec.week[0].task:'七日の修行'),
+    details:'「'+rec.aphorism+'」— '+rec.sage.name+'\n目標: '+rec.goal+'\n(7日間、毎日15分)',
+    dates:fmtLocal(d)+'/'+fmtLocal(end)});
+  return 'https://calendar.google.com/calendar/render?'+p.toString()+'&recur=RRULE:FREQ=DAILY;COUNT=7';
+}
+
+function renderPlan(rec){
+  const done=rec.checks.filter(Boolean).length;
+  $('phase-plan').innerHTML=`
+    <div class="plancard">
+      <p class="eyebrow">実 行 の 間</p>
+      <h2>七日の修行</h2>
+      <p class="from" style="text-align:center;font-size:12.5px;color:#7a7264">${esc(rec.sage.name)}の道 — 「${esc(rec.aphorism)}」</p>
+      <div class="goalbox">七日後の姿:<b>${esc(rec.goal)}</b></div>
+      ${rec.actions.map(a=>`
+        <div class="act">
+          <h4>${esc(a.step)}</h4>
+          <dl>
+            <dt>合図</dt><dd>${esc(a.when)}</dd>
+            <dt>最初の5分</dt><dd>${esc(a.first5)}</dd>
+            <dt>つまずき</dt><dd>${esc(a.obstacle)}</dd>
+            <dt>対策</dt><dd>${esc(a.ifthen)}</dd>
+          </dl>
+        </div>`).join('')}
+      <p class="weekhead">七日の歩み</p>
+      <div class="progress"><i id="pbar" style="width:${done/7*100}%"></i></div>
+      <div id="days">
+        ${rec.week.map((w,i)=>`
+          <label class="day ${rec.checks[i]?'done':''}">
+            <input type="checkbox" data-i="${i}" ${rec.checks[i]?'checked':''}>
+            <span class="dnum">${i+1}日</span>
+            <span class="dtask">${esc(w.task)}</span>
+          </label>`).join('')}
+      </div>
+      <div class="kaiden ${done===7?'show':''}" id="kaiden">
+        <div class="kseal">皆伝</div>
+        <p>七日の修行、見事に成し遂げた。<br>この歩みは、もうあなたのものだ。</p>
+      </div>
+      <div class="bridge">
+        <h5>現 実 へ の 橋</h5>
+        <div class="timeline-row">
+          <span>毎日の時刻</span><input type="time" id="ptime" value="08:00">
+        </div>
+        <button class="bbtn" id="ics-btn">カレンダーに7日分を登録(.ics)</button>
+        <a class="bbtn alt" id="gcal-btn" target="_blank" rel="noopener">Googleカレンダーに登録(毎日×7回)</a>
+        <button class="bbtn alt" id="plan-copy">プラン全文をコピー</button>
+      </div>
+    </div>
+    <div class="after">
+      <button class="ghost" id="plan-home">灯火の間に戻る</button>
+    </div>`;
+  const timeEl=$('ptime');
+  $('ics-btn').addEventListener('click',()=>downloadICS(rec,timeEl.value||'08:00'));
+  const setG=()=>{$('gcal-btn').href=gcalURL(rec,timeEl.value||'08:00');};
+  setG();timeEl.addEventListener('change',setG);
+  $('plan-copy').addEventListener('click',()=>{
+    const txt='【賢人会議・七日の修行】\n目標: '+rec.goal+'\n指針: 「'+rec.aphorism+'」— '+rec.sage.name+'\n\n'
+      +rec.actions.map(a=>'■'+a.step+'\n 合図:'+a.when+'\n 最初の5分:'+a.first5+'\n もし'+a.obstacle+'なら → '+a.ifthen).join('\n')
+      +'\n\n'+rec.week.map((w,i)=>(i+1)+'日目: '+w.task).join('\n');
+    navigator.clipboard.writeText(txt).then(()=>{$('plan-copy').textContent='コピーしました ✓';setTimeout(()=>$('plan-copy').textContent='プラン全文をコピー',1800);}).catch(()=>{});
+  });
+  document.querySelectorAll('#days input').forEach(cb=>cb.addEventListener('change',async()=>{
+    const i=+cb.dataset.i;rec.checks[i]=cb.checked;
+    cb.closest('.day').classList.toggle('done',cb.checked);
+    const d=rec.checks.filter(Boolean).length;
+    $('pbar').style.width=(d/7*100)+'%';
+    $('kaiden').classList.toggle('show',d===7);
+    await store.set(rec.key,rec);
+  }));
+  $('plan-home').addEventListener('click',()=>{$('worry').value='';show('phase-input');refreshSaved();refreshEn();});
+  show('phase-plan');
+}
+
+/* ---------- saved plans on home ---------- */
+async function refreshSaved(){
+  const keys=await store.keys('plan:');
+  if(!keys.length){$('saved').style.display='none';return;}
+  const recs=[];
+  for(const k of keys){const r=await store.get(k);if(r)recs.push(r);}
+  recs.sort((a,b)=>b.key.localeCompare(a.key));
+  $('saved').style.display='block';
+  $('saved-list').innerHTML=recs.map(r=>{
+    const d=r.checks.filter(Boolean).length;
+    return `<div class="pl-item">
+      <div class="info">
+        <p class="ttl">「${esc(r.aphorism)}」</p>
+        <p class="meta">${esc(r.sage.name)} ／ ${d}/7日 ／ ${esc(r.created)}〜</p>
+      </div>
+      <button class="open" data-k="${esc(r.key)}">続ける</button>
+      <button class="del" data-k="${esc(r.key)}" aria-label="削除">✕</button>
+    </div>`;}).join('');
+  document.querySelectorAll('#saved-list .open').forEach(b=>b.addEventListener('click',async()=>{
+    const r=await store.get(b.dataset.k);if(r)renderPlan(r);
+  }));
+  document.querySelectorAll('#saved-list .del').forEach(b=>b.addEventListener('click',async()=>{
+    if(confirm('この修行を削除しますか?')){await store.del(b.dataset.k);refreshSaved();}
+  }));
+}
+
+/* ---------- 縁と対話の間 ---------- */
+async function saveEn(s){
+  const key='en:'+s.name;
+  const ex=await store.get(key);
+  if(ex)return;
+  await store.set(key,{key,name:s.name,era:s.era||'',school:s.school||'知',sealChar:s.sealChar||'賢',
+    philosophy:s.philosophy||'',firstMet:new Date().toISOString().slice(0,10),msgs:[]});
+}
+function bondRank(n){return n<3?'初対面':n<8?'知己':n<16?'友':'師友';}
+function personaPrompt(rec,extra){
+  const hist=rec.msgs.slice(-12).map(m=>(m.role==='user'?'相談者':rec.name)+':'+m.content).join('\n');
+  return `あなたは歴史上の偉人「${rec.name}」(${rec.era}、思想: ${rec.philosophy})として、現代の相談者と語らいます。これはAIによる敬意ある創作であり、本人の実際の発言ではない前提です。${rec.name}の思想と語り口を一貫して保ち、120〜180字で応答してください。教えを一方的に説かず、時に相手へ問い返すこと。現代の事柄には、その人らしい驚きや解釈で応じてよい。相談者との縁: 対話${Math.floor(rec.msgs.length/2)}往復(${bondRank(Math.floor(rec.msgs.length/2))})。縁が深いほど砕けた親しみを込めてよい。人柄の魅力(機知・情熱・艶)も品位の範囲で表現してよいが、賢者としての一線と故人への敬意は必ず保つこと。
+これまでの対話:
+${hist||'(まだ言葉を交わしていない)'}
+${extra}
+${rec.name}の台詞のみを地の文で出力。JSON・前置き・かぎ括弧は不要。`;
+}
+async function openTalk(key){
+  const rec=await store.get(key);
+  if(!rec)return;
+  renderTalk(rec);
+  if(rec.msgs.length===0){
+    typing(true);
+    try{
+      const t=await askClaudeText(personaPrompt(rec,'相談者が初めて対話の間を訪れました。初対面の挨拶を80字以内で。'));
+      rec.msgs.push({role:'sage',content:t});
+      await store.set(rec.key,rec);
+      renderTalk(rec);
+    }catch(e){typing(false);}
+  }
+}
+function typing(on){
+  const log=$('talk-log');if(!log)return;
+  const ex=log.querySelector('.typing');
+  if(on&&!ex){const d=document.createElement('div');d.className='msg sage typing';d.textContent='………';log.appendChild(d);d.scrollIntoView({block:'end'});}
+  if(!on&&ex)ex.remove();
+}
+function renderTalk(rec){
+  const cnt=Math.floor(rec.msgs.length/2);
+  $('phase-talk').innerHTML=`
+    <div class="talk-head">
+      <div class="sseal" aria-hidden="true">${esc(rec.sealChar)}</div>
+      <div>
+        <h3>${esc(rec.name)}</h3>
+        <p class="sub">${esc(rec.era)} ／ ${esc(rec.philosophy)}</p>
+      </div>
+      <span class="bond">${bondRank(cnt)} ・ ${cnt}往復</span>
+    </div>
+    <div class="talk-log" id="talk-log">
+      ${rec.msgs.map(m=>`<div class="msg ${m.role==='user'?'user':'sage'}">${esc(m.content)}</div>`).join('')}
+    </div>
+    <div class="talk-input">
+      <textarea id="talk-text" placeholder="${esc(rec.name)}に話しかける……"></textarea>
+      <button class="cta" id="talk-send">送る</button>
+    </div>
+    <div class="after">
+      <button class="ghost" id="talk-home">灯火の間に戻る</button>
+    </div>`;
+  $('talk-send').addEventListener('click',()=>sendTalk(rec));
+  $('talk-text').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){sendTalk(rec);}});
+  $('talk-home').addEventListener('click',()=>{show('phase-input');refreshSaved();refreshEn();});
+  show('phase-talk');
+  const log=$('talk-log');log.lastElementChild&&log.lastElementChild.scrollIntoView({block:'end'});
+}
+async function sendTalk(rec){
+  const el=$('talk-text');const txt=el.value.trim();
+  if(!txt)return;
+  el.value='';$('talk-send').disabled=true;
+  rec.msgs.push({role:'user',content:txt});
+  const log=$('talk-log');
+  const u=document.createElement('div');u.className='msg user';u.textContent=txt;log.appendChild(u);
+  typing(true);
+  try{
+    const t=await askClaudeText(personaPrompt(rec,`相談者:「${txt}」`));
+    rec.msgs.push({role:'sage',content:t});
+    if(rec.msgs.length>60)rec.msgs=rec.msgs.slice(-60);
+    await store.set(rec.key,rec);
+    renderTalk(rec);
+  }catch(e){
+    typing(false);$('talk-send').disabled=false;
+    const d=document.createElement('div');d.className='msg sage';d.textContent='(声が届きませんでした。もう一度お願いします)';log.appendChild(d);
+    rec.msgs.pop();
+  }
+}
+async function refreshEn(){
+  const keys=await store.keys('en:');
+  if(!keys.length){$('en-sec').style.display='none';return;}
+  const recs=[];
+  for(const k of keys){const r=await store.get(k);if(r)recs.push(r);}
+  recs.sort((a,b)=>b.msgs.length-a.msgs.length);
+  $('en-sec').style.display='block';
+  $('en-list').innerHTML=recs.map(r=>{
+    const c=Math.floor(r.msgs.length/2);
+    return `<div class="pl-item">
+      <div class="sseal" aria-hidden="true">${esc(r.sealChar)}</div>
+      <div class="info">
+        <p class="ttl">${esc(r.name)}</p>
+        <p class="meta">${esc(r.philosophy)} ／ ${bondRank(c)}(${c}往復)／ ${esc(r.firstMet)}に出会う</p>
+      </div>
+      <button class="open" data-k="${esc(r.key)}">語らう</button>
+      <button class="del" data-k="${esc(r.key)}" aria-label="縁を解く">✕</button>
+    </div>`;}).join('');
+  document.querySelectorAll('#en-list .open').forEach(b=>b.addEventListener('click',()=>openTalk(b.dataset.k)));
+  document.querySelectorAll('#en-list .del').forEach(b=>b.addEventListener('click',async()=>{
+    if(confirm('この縁を解きますか?(会話も消えます)')){await store.del(b.dataset.k);refreshEn();}
+  }));
+}
+
+function topType(){
+  const e=Object.entries(state.tally).sort((a,b)=>b[1]-a[1]);
+  return e[0][1]===0?'未判定':SCHOOL_DESC[e[0][0]];
+}
+function renderProfile(){
+  $('profile').style.display='block';
+  $('tally').innerHTML=Object.entries(state.tally).map(([k,v])=>`<span>${k}<b>${v}</b></span>`).join('');
+  $('type-line').textContent=state.rounds>0?('現在のあなた:'+topType()+'('+state.rounds+'回の会議より)'):'';
+}
+
+/* ---------- 賢者を訪ねる(指名) ---------- */
+async function visitSage(){
+  const name=$('visit-name').value.trim();
+  const msg=$('visit-msg');
+  if(!name){$('visit-name').focus();return;}
+  msg.textContent='';
+  const exKeys=await store.keys('en:');
+  for(const k of exKeys){
+    const r=await store.get(k);
+    if(r&&(r.name===name||k==='en:'+name)){openTalk(k);return;}
+  }
+  show('phase-loading');$('loading-text').textContent=name+' を探しています……';
+  const prompt=`「${name}」が実在した歴史上の人物(すでに亡くなっている故人)である場合のみ、その人物のプロフィールを作成してください。存命の人物・架空の人物・実在が確認できない場合は {"error":"招けない理由(30字以内、丁寧に)"} のみを出力。
+故人であれば、必ず次のJSONのみを出力(前置き・コードブロック禁止):
+{"name":"一般的な呼び名","era":"時代と肩書(例: 古代エジプト・プトレマイオス朝最後の女王)","school":"剛か柔か知か情のいずれか1字(剛=決断と行動 柔=受容と流れ 知=理性と分析 情=心と縁)","sealChar":"その人を象徴する漢字1字","philosophy":"思想や生き方の一言(10字以内)"}`;
+  try{
+    const p=await askClaude(prompt);
+    if(p.error){
+      show('phase-input');refreshSaved();refreshEn();
+      msg.textContent=p.error;
+      return;
+    }
+    await saveEn(p);
+    $('visit-name').value='';
+    openTalk('en:'+p.name);
+  }catch(e){showError(e);}
+}
+$('visit-go').addEventListener('click',visitSage);
+$('visit-name').addEventListener('keydown',e=>{if(e.key==='Enter')visitSage();});
+
+const VCATS={
+  jo:['クレオパトラ','楊貴妃','マリー・アントワネット','ジャンヌ・ダルク','与謝野晶子','北条政子','エリザベス1世','ココ・シャネル'],
+  ei:['織田信長','ナポレオン','坂本龍馬','カエサル','アレクサンドロス大王','土方歳三','西郷隆盛','チンギス・ハン'],
+  bun:['ソクラテス','紫式部','レオナルド・ダ・ヴィンチ','清少納言','ゲーテ','アインシュタイン','千利休','ニーチェ']
+};
+function renderVChips(cat){
+  $('vchips').innerHTML=(VCATS[cat]||[]).map(n=>`<button class="chip vc">${esc(n)}</button>`).join('');
+  document.querySelectorAll('#vchips .vc').forEach(c=>c.addEventListener('click',()=>{
+    $('visit-name').value=c.textContent;visitSage();
+  }));
+}
+document.querySelectorAll('.vtab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.vtab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');renderVChips(t.dataset.c);
+}));
+renderVChips('jo');
+
+async function ichigoIchie(){
+  show('phase-loading');$('loading-text').textContent='運命の糸を手繰っています……';
+  const known=(await store.keys('en:')).map(k=>k.slice(3)).join('、')||'なし';
+  const nth=1+Math.floor(Math.random()*10);
+  const prompt=`東西の歴史から、語らって魅力的な故人の候補を頭の中で10名(有名すぎない人物も混ぜて)挙げ、その${nth}番目を選んでください。既に縁のある人物は除外: ${known}。必ず次のJSONのみを出力(前置き・コードブロック禁止):
+{"name":"一般的な呼び名","era":"時代と肩書","school":"剛か柔か知か情のいずれか1字","sealChar":"象徴する漢字1字","philosophy":"思想や生き方の一言(10字以内)"}`;
+  try{
+    const p=await askClaude(prompt);
+    if(!p.name)throw new Error('形式不正');
+    await saveEn(p);
+    openTalk('en:'+p.name);
+  }catch(e){showError(e);}
+}
+$('ichigo').addEventListener('click',ichigoIchie);
+
+/* ---------- 会員解錠・無料枠 ---------- */
+function freeUsed(){try{return +(localStorage.getItem('kenjin:used')||0);}catch(e){return 0;}}
+function bumpFree(){try{localStorage.setItem('kenjin:used',String(freeUsed()+1));}catch(e){}updateBadge();}
+function updateBadge(){
+  const bar=$('member-bar');if(!bar)return;
+  if(MEMBER_TOKEN){bar.innerHTML='✓ 会員 — 賢者と、語り放題';return;}
+  const left=Math.max(0,SAGE_FREE_LIMIT-freeUsed());
+  bar.innerHTML='無料お試し中（あと約'+left+'回）　<a href="#" id="member-link" style="color:var(--tomoshibi)">会員で解錠</a>';
+  const lk=$('member-link');if(lk)lk.addEventListener('click',e=>{e.preventDefault();openUnlock();});
+}
+function openUnlock(){const b=$('unlock-box');if(!b)return;b.style.display='block';b.scrollIntoView({behavior:'smooth',block:'center'});}
+function closeUnlock(){const b=$('unlock-box');if(b)b.style.display='none';}
+function setMember(token){
+  MEMBER_TOKEN=token;
+  try{localStorage.setItem('kenjin:token',token);}catch(e){}
+  closeUnlock();updateBadge();
+  const m=$('u-msg');if(m)m.textContent='';
+  $('err-box').innerHTML='<div class="err" style="background:#1f2e1c;border-color:#3a6e2e;color:#c9f0bd">会員として解錠しました。賢者と、心ゆくまで語らってください。</div>';
+  show('phase-input');
+}
+async function redeemCode(){
+  const code=($('u-code').value||'').trim();const m=$('u-msg');m.textContent='';
+  if(!code){$('u-code').focus();return;}
+  const btn=$('u-code-go');btn.disabled=true;
+  try{
+    const r=await fetch(MEMBER_API+'/api/redeem',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code})});
+    const d=await r.json();
+    if(d&&d.token)setMember(d.token);else m.textContent='コードが違うようです。note会員ページの「今月のコード」をご確認ください。';
+  }catch(e){m.textContent='通信に失敗しました。少し待って再度お試しください。';}
+  btn.disabled=false;
+}
+async function redeemLicense(){
+  const lic=($('u-lic').value||'').trim();const m=$('u-msg');m.textContent='';
+  if(!lic){$('u-lic').focus();return;}
+  const btn=$('u-lic-go');btn.disabled=true;
+  try{
+    const r=await fetch(MEMBER_API+'/api/redeem-license',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({license:lic})});
+    const d=await r.json();
+    if(d&&d.token)setMember(d.token);else m.textContent='ライセンスキーが確認できませんでした。購入時のキーをご確認ください。';
+  }catch(e){m.textContent='通信に失敗しました。少し待って再度お試しください。';}
+  btn.disabled=false;
+}
+function initMember(){
+  const cb=$('u-code-go');if(cb)cb.addEventListener('click',redeemCode);
+  const lb=$('u-lic-go');if(lb)lb.addEventListener('click',redeemLicense);
+  const cl=$('u-close');if(cl)cl.addEventListener('click',closeUnlock);
+  const ci=$('u-code');if(ci)ci.addEventListener('keydown',e=>{if(e.key==='Enter')redeemCode();});
+  const li=$('u-lic');if(li)li.addEventListener('keydown',e=>{if(e.key==='Enter')redeemLicense();});
+  updateBadge();
+}
+refreshSaved();refreshEn();initMember();
+</script>
+</body>
+</html>
