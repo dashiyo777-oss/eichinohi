@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>墓所手帖 — 全国 偉人のお墓めぐり</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b5c7bb95430e4302b57dff2174519294"}'></script>
+<style>
+:root{
+  --stone:#E6E9E3; --paper:#F3F4F0; --sumi:#23282A; --moss:#56663F;
+  --granite:#8C948D; --fuji:#6B5B95; --line:#C9CEC6; --card:#FFFFFF;
+  --mincho:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --gothic:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --stone:#1C2020; --paper:#232828; --sumi:#E4E7E1; --moss:#9DB07F;
+    --granite:#8E968F; --fuji:#B3A5DB; --line:#3A4140; --card:#2A3030;
+  }
+}
+:root[data-theme="dark"]{
+  --stone:#1C2020; --paper:#232828; --sumi:#E4E7E1; --moss:#9DB07F;
+  --granite:#8E968F; --fuji:#B3A5DB; --line:#3A4140; --card:#2A3030;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--stone);color:var(--sumi);font-family:var(--gothic);line-height:1.8;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px 64px}
+
+/* 墓標の意匠 */
+.hero{display:flex;gap:22px;align-items:flex-end;padding:40px 0 28px}
+.pillar{
+  writing-mode:vertical-rl;font-family:var(--mincho);font-weight:800;
+  font-size:clamp(34px,9vw,52px);letter-spacing:.18em;line-height:1;
+  background:linear-gradient(180deg,#9AA19B,#7D857F);color:#2B302D;
+  padding:22px 16px 30px;border-radius:14px 14px 2px 2px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.25),0 10px 0 -4px #6E756F;
+  clip-path:polygon(50% 0,100% 9%,100% 100%,0 100%,0 9%);
+  padding-top:34px;flex-shrink:0;
+  text-shadow:0 1px 0 rgba(255,255,255,.35);
+}
+.hero-text h1{font-family:var(--mincho);font-weight:700;font-size:20px;margin:0 0 8px;line-height:1.5}
+.hero-text p{margin:0;font-size:14.5px;color:var(--granite);max-width:32em}
+.progress{margin-top:16px;font-family:var(--mincho);font-size:15px}
+.progress b{font-size:28px;color:var(--moss);font-weight:800}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden;max-width:260px}
+.bar i{display:block;height:100%;background:var(--moss);width:0;transition:width .4s}
+
+/* 絞り込み */
+.controls{position:sticky;top:0;z-index:5;background:var(--stone);padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.search{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--sumi);font:inherit;font-size:16px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-top:10px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;border:1px solid var(--line);background:transparent;color:var(--sumi);padding:6px 13px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--sumi);color:var(--stone);border-color:var(--sumi)}
+.tab:focus-visible,.search:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--fuji);outline-offset:2px}
+
+.region-h{font-family:var(--mincho);font-weight:700;font-size:18px;margin:30px 0 10px;padding-left:12px;border-left:4px solid var(--moss)}
+
+/* 一人ずつの記 */
+.grave{background:var(--card);border-radius:4px 4px 12px 12px;margin:10px 0;border-top:3px solid var(--granite)}
+.grave.visited{border-top-color:var(--fuji)}
+.g-head{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;cursor:pointer;width:100%;background:none;border:0;text-align:left;color:inherit;font:inherit}
+.g-name{font-family:var(--mincho);font-weight:700;font-size:19px;line-height:1.35}
+.g-sub{font-size:13px;color:var(--granite);line-height:1.5}
+.g-main{flex:1;min-width:0}
+.era{font-size:12px;border:1px solid var(--line);padding:1px 8px;border-radius:4px;white-space:nowrap;color:var(--granite)}
+.g-body{display:none;padding:0 16px 16px;font-size:15px}
+.grave.open .g-body{display:block}
+.g-body p{margin:6px 0 10px}
+.g-body dl{margin:0 0 12px;display:grid;grid-template-columns:4.5em 1fr;gap:2px 8px;font-size:14px}
+.g-body dt{color:var(--granite)}
+.g-body dd{margin:0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:8px;font:inherit;font-size:14px;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--sumi)}
+.btn.mark{background:var(--moss);border-color:var(--moss);color:#fff}
+.visited .btn.mark{background:transparent;color:var(--fuji);border-color:var(--fuji)}
+.seal{width:30px;height:30px;border-radius:50%;flex-shrink:0;border:1.5px dashed var(--line);display:grid;place-items:center;font-family:var(--mincho);font-size:13px;color:transparent}
+.visited .seal{border:1.5px solid var(--fuji);color:var(--fuji);transform:rotate(-12deg)}
+.empty{padding:30px 0;color:var(--granite);text-align:center}
+
+.manners{margin-top:40px;background:var(--paper);padding:18px 18px 8px;border-radius:12px}
+.manners h2{font-family:var(--mincho);font-size:18px;margin:0 0 8px}
+.manners li{margin-bottom:8px;font-size:14.5px}
+  .walk{margin:0 0 14px;padding:12px 16px;background:var(--paper);border-left:4px solid var(--fuji);border-radius:4px;font-family:var(--mincho);font-size:15.5px}
+footer a{color:var(--moss)}
+footer{margin-top:28px;font-size:12.5px;color:var(--granite)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="pillar" aria-hidden="true">墓所手帖</div>
+    <div class="hero-text">
+      <h1>全国 偉人のお墓めぐり</h1>
+      <p>千年前の歌人から明治の文豪まで。会いに行ける場所を地方ごとにまとめました。お参りしたら印をつけて、自分だけの巡礼帳に。</p>
+      <div class="progress"><b id="count">0</b> / <span id="total">0</span> か所 お参り済み
+        <div class="bar"><i id="barfill"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <p class="walk" id="walk" hidden>いくつになっても、会いに行きたい人がいると足は軽くなるもの。今週はどの偉人に会いに行きますか。</p>
+
+  <div class="controls">
+    <input class="search" id="q" type="search" placeholder="人物名・地名でさがす（例：龍馬、鎌倉）" aria-label="人物名や地名で検索">
+    <div class="tabs" id="tabs" role="group" aria-label="地方で絞り込む"></div>
+  </div>
+
+  <main id="list"></main>
+
+  <section class="manners">
+    <h2>お参りの心得</h2>
+    <ul>
+      <li>寺院の境内墓地は、まず本堂にお参りしてから。檀家さんのお墓もあるので、静かに歩きましょう。</li>
+      <li>拝観時間・拝観料・撮影可否は場所ごとに違います。非公開や予約制の墓所もあるため、出かける前に公式情報を確認してください。</li>
+      <li>お供えの飲食物は持ち帰るのが基本です。線香・献花は各所の決まりに従ってください。</li>
+    </ul>
+  </section>
+  <footer>墓所は伝承地・供養塔を含みます。所在地は目安です。<a href="https://eichinohi.com/">叡智の灯火 eichinohi.com</a> のほかの手帖もどうぞ。</footer>
+</div>
+
+<script>
+const REGIONS=["北海道・東北","関東","中部","近畿","中国・四国","九州・沖縄"];
+const D=[
+// 北海道・東北
+["mutsu-ishikawa","北海道・東北","石川啄木","明治","歌人","石川啄木一族の墓","北海道函館市住吉町（立待岬近く）","函館を愛した啄木。津軽海峡を望む丘に一族の墓があり、墓碑には函館を詠んだ歌が刻まれています。"],
+["date","北海道・東北","伊達政宗","戦国〜江戸","仙台藩祖","瑞鳳殿","宮城県仙台市青葉区霊屋下","極彩色の桃山様式の霊屋。戦災で焼失後に再建され、発掘調査では政宗の遺骨や副葬品も確認されました。"],
+["fujiwara","北海道・東北","奥州藤原氏四代","平安","平泉の王者","中尊寺 金色堂","岩手県西磐井郡平泉町","清衡・基衡・秀衡の遺体と泰衡の首級が、金色堂の須弥壇の中に今も納められています。"],
+["kenji","北海道・東北","宮沢賢治","大正〜昭和","詩人・童話作家","身照寺","岩手県花巻市石神町","法華経を深く信仰した賢治は、宮沢家の菩提寺とは別の日蓮宗の寺に眠っています。"],
+["byakkotai","北海道・東北","白虎隊士","幕末","会津藩の少年隊","飯盛山","福島県会津若松市一箕町","戊辰戦争で城下の煙を見て自刃した少年たちの墓が並び、鶴ヶ城の方角を向いています。"],
+// 関東
+["ieyasu","関東","徳川家康","江戸","江戸幕府初代将軍","日光東照宮 奥宮","栃木県日光市山内","久能山から改葬され、神として祀られた家康の宝塔が、207段の石段の先に建っています。"],
+["yoritomo","関東","源頼朝","鎌倉","鎌倉幕府初代将軍","源頼朝の墓（白旗神社そば）","神奈川県鎌倉市西御門","大倉幕府跡の北の丘に、小さな層塔が立つ簡素な墓所。現在の塔は江戸時代に薩摩藩主が整えたと伝わります。"],
+["masako","関東","北条政子・源実朝","鎌倉","尼将軍と三代将軍","寿福寺","神奈川県鎌倉市扇ガ谷","裏山のやぐら（岩窟）に、母子の墓と伝わる五輪塔が並んでいます。"],
+["ako","関東","大石内蔵助と赤穂義士","江戸","忠臣蔵","泉岳寺","東京都港区高輪","主君・浅野内匠頭の墓を囲むように四十七士の墓が並び、12月14日の義士祭には多くの人が訪れます。"],
+["masakado","関東","平将門","平安","関東の英雄","将門塚（首塚）","東京都千代田区大手町","京で晒された首が飛んで落ちたと伝わる地。ビル街の中で今も大切に守られています。"],
+["hokusai","関東","葛飾北斎","江戸","浮世絵師","誓教寺","東京都台東区元浅草","「画狂老人卍墓」と刻まれた墓があり、90歳で没するまで描き続けた北斎を偲べます。"],
+["ino","関東","伊能忠敬","江戸","測量家","源空寺","東京都台東区東上野","遺言により、天文学の師・高橋至時の墓の隣に葬られました。"],
+["keiki","関東","徳川慶喜・渋沢栄一","幕末〜明治","最後の将軍と実業家","谷中霊園","東京都台東区谷中","慶喜は歴代将軍と別の地に神式で眠り、同じ霊園には慶喜に仕えた渋沢栄一の墓もあります。"],
+["soseki","関東","夏目漱石・小泉八雲","明治","文豪","雑司ヶ谷霊園","東京都豊島区南池袋","漱石の墓は椅子のような独特の形。八雲や永井荷風など、文人の墓が点在します。"],
+["dazai","関東","太宰治・森鷗外","明治〜昭和","文豪","禅林寺","東京都三鷹市下連雀","鷗外を敬愛した太宰は、その墓の斜め向かいに眠ります。命日の桜桃忌には花が絶えません。"],
+["shiki","関東","正岡子規","明治","俳人","大龍寺","東京都北区田端","「子規居士之墓」の傍らに、自ら記した墓誌銘の碑があります。"],
+["shoin","関東","吉田松陰","幕末","思想家・教育者","松陰神社","東京都世田谷区若林","刑死後、弟子の高杉晋作らが改葬。境内には松下村塾の模築もあります。"],
+["kaishu","関東","勝海舟","幕末〜明治","幕臣・政治家","洗足池公園","東京都大田区南千束","別邸を構えた洗足池のほとりに、夫人と並んで眠ります。"],
+// 中部
+["shingen","中部","武田信玄","戦国","甲斐の虎","恵林寺","山梨県甲州市塩山小屋敷","武田家の菩提寺。信玄の墓所があり、快川和尚の「心頭滅却すれば火も自ずから涼し」の逸話で知られます。"],
+["kenshin","中部","上杉謙信","戦国","越後の龍","林泉寺","新潟県上越市中門前","春日山城の麓、上杉家の菩提寺。謙信の墓があり、遺品も伝わります。"],
+["toshiie","中部","前田利家","戦国","加賀藩祖","野田山墓地","石川県金沢市野田町","加賀藩主前田家の広大な墓所。利家夫人まつの墓も並びます。"],
+// 近畿
+["murasaki","近畿","紫式部・小野篁","平安","源氏物語の作者","紫式部の墓","京都市北区紫野西御所田町（堀川北大路下ル）","閻魔庁の裁判官だったという篁が、地獄に落ちた式部を救ったという伝説から、二人の墓が並んでいます。"],
+["ryoma","近畿","坂本龍馬・中岡慎太郎","幕末","維新の志士","京都霊山護国神社","京都市東山区清閑寺霊山町","近江屋で共に襲われた二人が並んで眠り、京都の町を見下ろしています。"],
+["hideyoshi","近畿","豊臣秀吉","安土桃山","天下人","豊国廟","京都市東山区今熊野北日吉町","阿弥陀ヶ峰の山頂に巨大な五輪塔。数百段の石段を登った先にあります。"],
+["nobunaga","近畿","織田信長","戦国","天下布武","阿弥陀寺","京都市上京区寺町通今出川上ル","住職が信長の遺骨を持ち帰り葬ったと伝わる寺。信長父子の墓があります。"],
+["mitsuhide","近畿","明智光秀","戦国","坂本城主","西教寺","滋賀県大津市坂本","明智一族の菩提寺。光秀と妻・煕子の墓があります。"],
+["basho","近畿","松尾芭蕉・木曽義仲","平安〜江戸","俳聖と武将","義仲寺","滋賀県大津市馬場","義仲を慕った芭蕉は「骸は木曽塚に送るべし」と遺言し、義仲の墓の隣に眠ります。"],
+["taishi","近畿","聖徳太子","飛鳥","摂政","叡福寺（磯長墓）","大阪府南河内郡太子町","太子と母、妃の三人を葬ったと伝わる墓。宮内庁が管理しています。"],
+["kukai","近畿","空海（弘法大師）","平安","真言宗の開祖","高野山 奥之院","和歌山県伊都郡高野町","今も御廟で祈り続けているとされ、参道には戦国武将たちの供養塔が立ち並びます。"],
+["masashige","近畿","楠木正成","南北朝","忠臣","湊川神社","兵庫県神戸市中央区多聞通","徳川光圀が建てた「嗚呼忠臣楠子之墓」の碑が境内にあります。"],
+// 中国・四国
+["motonari","中国・四国","毛利元就","戦国","中国地方の覇者","郡山城跡 毛利元就墓所","広島県安芸高田市吉田町","居城・郡山城の麓に一族と共に眠ります。三本の矢の逸話でおなじみです。"],
+["shinsaku","中国・四国","高杉晋作","幕末","奇兵隊創設者","東行庵","山口県下関市吉田町清水山","「動けば雷電の如く」と称された晋作。愛人おうのが尼となって墓を守りました。"],
+["sutoku","中国・四国","崇徳上皇","平安","悲運の上皇","白峯陵","香川県坂出市青海町","讃岐に流され没した上皇の陵。西行が訪れ歌を詠んだ地です。"],
+// 九州・沖縄
+["michizane","九州・沖縄","菅原道真","平安","学問の神","太宰府天満宮","福岡県太宰府市宰府","亡骸を運ぶ牛車が動かなくなった場所に葬られ、その上に本殿が建てられたと伝わります。"],
+["kanbei","九州・沖縄","黒田官兵衛（如水）","戦国","軍師","崇福寺","福岡県福岡市博多区千代","黒田家の菩提寺で、如水と長政の墓所があります。墓所の公開は限られるため事前確認を。"],
+["sorin","九州・沖縄","大友宗麟","戦国","キリシタン大名","宗麟公園（大友宗麟墓所）","大分県津久見市井無田","晩年を過ごした津久見に、十字架をあしらった洋式の墓が整えられています。"],
+["kiyomasa","九州・沖縄","加藤清正","戦国","熊本城の築城者","本妙寺 浄池廟","熊本県熊本市西区花園","熊本城を望む高台の廟。「せいしょこさん」と今も親しまれています。"],
+["saigo","九州・沖縄","西郷隆盛","幕末〜明治","維新三傑","南洲墓地","鹿児島県鹿児島市上竜尾町","西南戦争の将兵2000人以上と共に眠り、桜島と向かい合っています。"],
+["shimazu","九州・沖縄","島津家歴代","戦国〜江戸","薩摩藩主","福昌寺跡","鹿児島県鹿児島市池之上町","島津家の菩提寺跡。関ヶ原の敵中突破で知られる義弘らの墓が並びます。"],
+["tamaudun","九州・沖縄","琉球国王 尚氏","琉球王国","第二尚氏王統","玉陵（たまうどぅん）","沖縄県那覇市首里金城町","王家の陵墓で世界遺産。石造りの屋根をもつ独特の墓室が見られます。"]
+];
+
+const KEY="bosho-techo-visited";
+let visited={};
+try{visited=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){visited={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(visited))}catch(e){}}
+
+let region="すべて";
+const tabs=document.getElementById("tabs");
+["すべて",...REGIONS,"お参り済み"].forEach(r=>{
+  const b=document.createElement("button");
+  b.className="tab";b.textContent=r;b.setAttribute("aria-pressed",r===region);
+  b.onclick=()=>{region=r;[...tabs.children].forEach(x=>x.setAttribute("aria-pressed",x===b));render()};
+  tabs.appendChild(b);
+});
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function card(g){
+  const [id,,name,era,role,place,addr,story]=g;
+  const v=!!visited[id];
+  const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(place+" "+addr.replace(/（.*?）/g,""));
+  return `<article class="grave${v?" visited":""}" data-id="${id}">
+    <button class="g-head" aria-expanded="false">
+      <span class="seal" aria-hidden="true">参</span>
+      <span class="g-main"><span class="g-name">${esc(name)}</span><br><span class="g-sub">${esc(role)}　${esc(place)}</span></span>
+      <span class="era">${esc(era)}</span>
+    </button>
+    <div class="g-body">
+      <p>${esc(story)}</p>
+      <dl><dt>墓所</dt><dd>${esc(place)}</dd><dt>所在地</dt><dd>${esc(addr)}</dd></dl>
+      <div class="actions">
+        <a class="btn" href="${map}" target="_blank" rel="noopener">地図で開く</a>
+        <button class="btn mark">${v?"お参り済み（取り消す）":"お参りした"}</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function render(){
+  const q=document.getElementById("q").value.trim();
+  const list=document.getElementById("list");
+  const hit=D.filter(g=>{
+    if(region==="お参り済み"&&!visited[g[0]])return false;
+    if(REGIONS.includes(region)&&g[1]!==region)return false;
+    return !q||g.slice(2).join(" ").includes(q);
+  });
+  let html="";
+  REGIONS.forEach(r=>{
+    const items=hit.filter(g=>g[1]===r);
+    if(items.length)html+=`<h2 class="region-h">${r}</h2>`+items.map(card).join("");
+  });
+  list.innerHTML=html||`<p class="empty">${region==="お参り済み"?"まだ印がありません。お参りしたら「お参りした」を押してください。":"見つかりませんでした。別の人物名や地名で探してみてください。"}</p>`;
+  const n=D.filter(g=>visited[g[0]]).length;
+  document.getElementById("count").textContent=n;
+  document.getElementById("total").textContent=D.length;
+  document.getElementById("barfill").style.width=(n/D.length*100)+"%";
+}
+
+document.getElementById("list").addEventListener("click",e=>{
+  const art=e.target.closest(".grave");if(!art)return;
+  if(e.target.closest(".g-head")){
+    const open=art.classList.toggle("open");
+    art.querySelector(".g-head").setAttribute("aria-expanded",open);
+  }
+  if(e.target.closest(".mark")){
+    const id=art.dataset.id;
+    if(visited[id])delete visited[id];else visited[id]=new Date().toISOString().slice(0,10);
+    save();render();
+    const again=document.querySelector(`.grave[data-id="${id}"]`);
+    if(again){again.classList.add("open");again.querySelector(".g-head").setAttribute("aria-expanded",true)}
+  }
+});
+document.getElementById("q").addEventListener("input",render);
+try{if(new URLSearchParams(location.search).get("from")==="threads")document.getElementById("walk").hidden=false}catch(e){}
+render();
+</script>
+</body>
+</html>
