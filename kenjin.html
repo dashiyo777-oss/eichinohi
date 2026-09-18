@@ -5,6 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>賢人会議 — 悩みを、七日の行動に変える</title>
+<meta name="description" content="悩みをひとつ灯すと、思想の異なる歴史上の賢人3人が現れて助言。腹落ちした言葉を、七日の修行に変える。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="叡智の灯火">
+<meta property="og:title" content="賢人会議 — 悩みを、七日の行動に変える">
+<meta property="og:description" content="悩みをひとつ灯すと、思想の異なる歴史上の賢人3人が現れて助言。腹落ちした言葉を、七日の修行に変える。">
+<meta property="og:url" content="https://eichinohi.com/kenjin.html">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -213,6 +220,8 @@ footer{margin-top:44px;text-align:center;font-size:11px;color:#6b6588;line-heigh
     <div class="panel" id="unlock-box" style="display:none;margin-top:14px;border-color:var(--tomoshibi)">
       <label class="q" data-ja="🔑 会員で解錠 — 賢者と、語り放題" data-en="🔑 Unlock with membership — unlimited talks">🔑 会員で解錠 — 賢者と、語り放題</label>
       <p style="font-size:12.5px;color:#9a94b8;margin:-6px 0 12px;line-height:1.7" data-ja="叡智の灯火の会員（note／Gumroad）なら、賢人会議も使い放題になります。" data-en="Members of Beacon of Wisdom (note / Gumroad) get unlimited access to the Council of Sages, too.">叡智の灯火の会員（note／Gumroad）なら、賢人会議も使い放題になります。</p>
+      <a class="cta" style="display:block;text-align:center;text-decoration:none;margin-bottom:14px" href="https://note.com/leo77777/membership" target="_blank" rel="noopener" data-ja="🏮 会員になる（note 月額メンバーシップ）" data-en="🏮 Become a member (note membership)">🏮 会員になる（note 月額メンバーシップ）</a>
+      <p style="font-size:11.5px;color:#7a7264;margin:0 0 12px;text-align:center" data-ja="入会すると会員ページに「今月のコード」が載っています。それを下に入力してください。" data-en="After joining, find this month's code on the members page and enter it below.">入会すると会員ページに「今月のコード」が載っています。それを下に入力してください。</p>
       <div class="vrow">
         <input type="text" id="u-code" data-ph data-ja="noteの今月コード（TOMO-XXXX）" data-en="note monthly code (TOMO-XXXX)" placeholder="noteの今月コード（TOMO-XXXX）" autocomplete="off">
         <button class="cta" id="u-code-go" data-ja="解錠" data-en="Unlock">解錠</button>
@@ -515,6 +524,8 @@ function renderRx(s,rx,rev){
       <button class="ghost" id="objection-btn">${T('異議あり — 賢者に問い返す','I disagree — push back')}</button>
       <button class="ghost" id="talk-now">${T('この賢者と語らう','Talk with this sage')}</button>
       <button class="ghost" id="other-sage">${T('別の賢者の声を聞く','Hear another sage')}</button>
+      <button class="ghost" id="share-th">${T('Threadsで共有する','Share on Threads')}</button>
+      <button class="ghost" id="share-x">${T('Xで共有する','Share on X')}</button>
       <button class="ghost" id="copy-btn">${T('結果をコピーして共有する','Copy & share')}</button>
       <button class="ghost" id="again">${T('新しい悩みを灯す','Light a new worry')}</button>
     </div>
@@ -536,9 +547,11 @@ function renderRx(s,rx,rev){
   $('obj-send').addEventListener('click',objectFlow);
   $('other-sage').addEventListener('click',()=>renderCouncil());
   $('talk-now').addEventListener('click',async()=>{await saveEn(s);openTalk('en:'+s.name);});
+  const shareTxt=()=>T('【賢人会議】\n悩み:','[Council of Sages]\nWorry: ')+state.worry+T('\n選んだ賢者:','\nSage: ')+s.name+' ('+wayOf(s.school)+')'+T('\n処方:「','\nPrescription: ')+(rx.aphorism||'')+T('」\n#賢人会議','\n#CouncilOfSages')+'\nhttps://eichinohi.com/kenjin.html';
+  $('share-th').addEventListener('click',()=>{window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(shareTxt()),'_blank','noopener');});
+  $('share-x').addEventListener('click',()=>{window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(shareTxt()),'_blank','noopener');});
   $('copy-btn').addEventListener('click',()=>{
-    const txt=T('【賢人会議】\n悩み:','[Council of Sages]\nWorry: ')+state.worry+T('\n選んだ賢者:','\nSage: ')+s.name+' ('+wayOf(s.school)+')'+T('\n処方:「','\nPrescription: ')+(rx.aphorism||'')+T('」\n#賢人会議','\n#CouncilOfSages');
-    navigator.clipboard.writeText(txt).then(()=>{$('copy-btn').textContent=T('コピーしました ✓','Copied ✓');setTimeout(()=>$('copy-btn').textContent=T('結果をコピーして共有する','Copy & share'),1800);}).catch(()=>{});
+    navigator.clipboard.writeText(shareTxt()).then(()=>{$('copy-btn').textContent=T('コピーしました ✓','Copied ✓');setTimeout(()=>$('copy-btn').textContent=T('結果をコピーして共有する','Copy & share'),1800);}).catch(()=>{});
   });
   $('again').addEventListener('click',()=>{$('worry').value='';show('phase-input');refreshSaved();refreshEn();});
   renderProfile();
