@@ -245,6 +245,8 @@ document.getElementById("list").addEventListener("click",e=>{
 document.getElementById("q").addEventListener("input",render);
 try{if(new URLSearchParams(location.search).get("from")==="threads")document.getElementById("walk").hidden=false}catch(e){}
 render();
+// 訪問計測ビーコン（api.eichinohi.com の hits に site=bosho で記録。国別も自動で付く）
+try{new Image().src="https://api.eichinohi.com/api/hit?site=bosho&r="+Date.now();}catch(e){}
 </script>
 </body>
 </html>
