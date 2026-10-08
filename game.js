@@ -1155,12 +1155,21 @@
     else if (act === "membergate") { showMemberGate(); }
     else if (act === "redeem") {
       var cinp = app.querySelector(".code-input");
-      var code = cinp ? (cinp.value || "").trim().toUpperCase() : "";
-      var fail = function () { var m = app.querySelector(".code-msg"); if (m) m.textContent = L("コードが違います。note会員ページをご確認ください。", "Incorrect code. Please check the note members page."); };
+      // スマホ入力ゆれを吸収：全角→半角（NFKC）、長音・各種ダッシュ→ハイフン、空白除去、大文字化、ハイフン無しも許容
+      var code = cinp ? (cinp.value || "") : "";
+      if (code.normalize) code = code.normalize("NFKC");
+      code = code.replace(/[‐-―−ーｰ－]/g, "-").replace(/\s+/g, "").toUpperCase();
+      if (/^TOMO\d{4}$/.test(code)) code = "TOMO-" + code.slice(4);
+      var fail = function (status) {
+        var m = app.querySelector(".code-msg"); if (!m) return;
+        if (status === 429) m.textContent = L("試した回数が多すぎます。1分ほど待ってから、もう一度お試しください。", "Too many attempts. Please wait about a minute and try again.");
+        else if (status === 401) m.textContent = L("コードが違います。note会員ページの「今月のコード」をご確認ください（コードは毎月1日 朝9時に切り替わります）。", "Incorrect code. Please check this month's code on the note members page (it changes on the 1st of each month).");
+        else m.textContent = L("通信できませんでした。電波のよい場所で、もう一度お試しください。", "Couldn't connect. Please try again where the signal is better.");
+      };
       if (API) {
         var m0 = app.querySelector(".code-msg"); if (m0) m0.textContent = L("確認中…", "Verifying…");
         fetch(API + "/api/redeem", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code: code }) })
-          .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
           .then(function (d) { state.paidMonth = monthKey(new Date()); state.token = d.token; save(); return fetchPaid(); })
           .then(function () { if (currentEvent) showEvent(currentEvent); else showTitle(); })
           .catch(fail);

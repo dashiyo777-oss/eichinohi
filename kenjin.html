@@ -936,7 +936,12 @@ function setMember(token){
   show('phase-input');
 }
 async function redeemCode(){
-  const code=($('u-code').value||'').trim();const m=$('u-msg');m.textContent='';
+  // スマホ入力ゆれを吸収：全角→半角（NFKC）、長音・各種ダッシュ→ハイフン、空白除去、大文字化、ハイフン無しも許容
+  let code=($('u-code').value||'');
+  if(code.normalize)code=code.normalize('NFKC');
+  code=code.replace(/[‐-―−ーｰ－]/g,'-').replace(/\s+/g,'').toUpperCase();
+  if(/^TOMO\d{4}$/.test(code))code='TOMO-'+code.slice(4);
+  const m=$('u-msg');m.textContent='';
   if(!code){$('u-code').focus();return;}
   const btn=$('u-code-go');btn.disabled=true;
   try{
